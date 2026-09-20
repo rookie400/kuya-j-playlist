@@ -711,7 +711,7 @@ body{
             class="songTitle"
             id="songTitle"
         >
-            Loading playlist...
+            Loading...
         </div>
 
         <div
@@ -1245,7 +1245,7 @@ function unmuteRadio(){
     if(!playlistTotalDuration){
 
         alert(
-            "The playlist is still loading. Please wait a moment."
+            "Please wait a moment."
         );
 
         return;
@@ -2163,7 +2163,7 @@ async function loadMP3Playlist(){
     try{
 
         songTitle.textContent =
-            "Loading MP3 playlist...";
+            "waiting...";
 
         const host =
             location.hostname;

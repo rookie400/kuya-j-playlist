@@ -564,28 +564,32 @@ body{
 
 <div class="field">
 
-    <label>Your Name</label>
+```
+<label>Your Name</label>
 
-    <input
-        id="nameInput"
-        type="text"
-        maxlength="30"
-        autocomplete="name"
-        placeholder="Enter your name"
-    >
+<input
+    id="nameInput"
+    type="text"
+    maxlength="30"
+    autocomplete="name"
+    placeholder="Enter your name"
+>
+```
 
 </div>
 
 <div class="field">
 
-    <label>Password</label>
+```
+<label>Password</label>
 
-    <input
-        id="passwordInput"
-        type="password"
-        maxlength="50"
-        placeholder="Create your password"
-    >
+<input
+    id="passwordInput"
+    type="password"
+    maxlength="50"
+    placeholder="Create your password"
+>
+```
 
 </div>
 
@@ -610,68 +614,70 @@ body{
 
 <div class="header">
 
-    <div class="brand">
-        Kuya J <span>LIVE RADIO</span>
-    </div>
-
-    <div id="liveBadge" class="liveBadge offline">
-
-        <div class="liveDot"></div>
-
-        <span id="liveText">
-            STREAM OFFLINE
-        </span>
-
-    </div>
-
+```
+<div class="brand">
+    Kuya J <span>LIVE RADIO</span>
 </div>
 
+<div id="liveBadge" class="liveBadge offline">
+
+    <div class="liveDot"></div>
+
+    <span id="liveText">
+        STREAM OFFLINE
+    </span>
+
+</div>
+```
+
+</div>
 
 <!-- TIME -->
 
 <div class="timeGrid">
 
-    <div class="infoBox">
+```
+<div class="infoBox">
 
-        <div class="infoTitle">
-            CURRENT TIME
-        </div>
-
-        <div
-            class="infoValue"
-            id="currentTime"
-        >
-            --:--:--
-        </div>
-
-        <div
-            class="infoSmall"
-            id="currentDate"
-        >
-            --
-        </div>
-
+    <div class="infoTitle">
+        CURRENT TIME
     </div>
 
+    <div
+        class="infoValue"
+        id="currentTime"
+    >
+        --:--:--
+    </div>
 
-    <div class="infoBox">
-
-        <div class="infoTitle">
-            LISTENING HOURS
-        </div>
-
-        <div class="infoValue">
-            6:00 AM – 10:00 PM
-        </div>
-
-        <div class="infoSmall">
-            Daily
-        </div>
-
+    <div
+        class="infoSmall"
+        id="currentDate"
+    >
+        --
     </div>
 
 </div>
 
+
+<div class="infoBox">
+
+    <div class="infoTitle">
+        LISTENING HOURS
+    </div>
+
+    <div class="infoValue">
+        6:00 AM – 10:00 PM
+    </div>
+
+    <div class="infoSmall">
+        Daily
+    </div>
+
+</div>
+```
+
+</div>
 
 <!-- NOW PLAYING -->
 
@@ -680,50 +686,51 @@ body{
     id="nowPlayingBox"
 >
 
-    <div
-        class="equalizer"
-        id="equalizer"
-        aria-hidden="true"
-    >
+```
+<div
+    class="equalizer"
+    id="equalizer"
+    aria-hidden="true"
+>
 
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-
-    </div>
-
-    <div class="onAir">
-        ● ON AIR
-    </div>
-
-    <div
-        class="songTitle"
-        id="songTitle"
-    >
-        Loading...
-    </div>
-
-    <div
-        class="songNumber"
-        id="songNumber"
-    >
-        --
-    </div>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
 
 </div>
 
+<div class="onAir">
+    ● ON AIR
+</div>
+
+<div
+    class="songTitle"
+    id="songTitle"
+>
+    Loading...
+</div>
+
+<div
+    class="songNumber"
+    id="songNumber"
+>
+    --
+</div>
+```
+
+</div>
 
 <!-- OFFLINE -->
 
@@ -732,103 +739,106 @@ body{
     id="offlineBox"
 >
 
-    <div class="offlineIcon">
-        🔴
-    </div>
-
-    <div class="offlineTitle">
-        STREAM IS OFFLINE
-    </div>
-
-    <div class="offlineText">
-        Listening hours are from
-        6:00 AM to 10:00 PM.
-        <br>
-        Please come back during listening hours.
-    </div>
-
+```
+<div class="offlineIcon">
+    🔴
 </div>
 
+<div class="offlineTitle">
+    STREAM IS OFFLINE
+</div>
+
+<div class="offlineText">
+    Listening hours are from
+    6:00 AM to 10:00 PM.
+    <br>
+    Please come back during listening hours.
+</div>
+```
+
+</div>
 
 <!-- AUDIO -->
 
 <div class="audioArea">
 
-    <audio
-        id="audioPlayer"
-        preload="auto"
-        playsinline
-    ></audio>
+```
+<audio
+    id="audioPlayer"
+    preload="auto"
+    playsinline
+></audio>
 
-    <button
-        id="unmuteBtn"
-        class="unmuteBtn"
-        onclick="unmuteRadio()"
-        title="Play / Unmute"
-        aria-label="Play / Unmute"
+<button
+    id="unmuteBtn"
+    class="unmuteBtn"
+    onclick="unmuteRadio()"
+    title="Play / Unmute"
+    aria-label="Play / Unmute"
+>
+    ▶️
+</button>
+
+<div class="volumeBox">
+
+    <div
+        class="volumeIcon"
+        id="volumeIcon"
     >
-        ▶️
-    </button>
+        🔊
+    </div>
 
-    <div class="volumeBox">
+    <input
+        id="volumeSlider"
+        type="range"
+        min="0"
+        max="100"
+        value="80"
+        aria-label="Volume"
+    >
 
-        <div
-            class="volumeIcon"
-            id="volumeIcon"
-        >
-            🔊
-        </div>
-
-        <input
-            id="volumeSlider"
-            type="range"
-            min="0"
-            max="100"
-            value="80"
-            aria-label="Volume"
-        >
-
-        <div
-            class="volumeValue"
-            id="volumeValue"
-        >
-            80%
-        </div>
-
+    <div
+        class="volumeValue"
+        id="volumeValue"
+    >
+        80%
     </div>
 
 </div>
+```
 
+</div>
 
 <!-- JOIN NOTIFICATION -->
 
 <div class="joinSection">
 
-    <div class="joinHeader">
-
-        <div
-            class="joinMessage"
-            id="joinMessage"
-        >
-            No listeners yet.
-        </div>
-
-        <button
-            class="expandBtn"
-            id="expandBtn"
-        >
-            Expand
-        </button>
-
-    </div>
+```
+<div class="joinHeader">
 
     <div
-        class="joinList"
-        id="joinList"
-    ></div>
+        class="joinMessage"
+        id="joinMessage"
+    >
+        No listeners yet.
+    </div>
+
+    <button
+        class="expandBtn"
+        id="expandBtn"
+    >
+        Expand
+    </button>
 
 </div>
 
+<div
+    class="joinList"
+    id="joinList"
+></div>
+```
+
+</div>
 
 <div class="footer">
     Kuya J Live Radio
@@ -937,7 +947,7 @@ let currentUser =
 
 
 /* =====================================================
-   JOINED LISTENERS
+   LISTENERS
 ===================================================== */
 
 let listeners = [];
@@ -955,7 +965,7 @@ try{
         listeners = [];
     }
 
-}catch(e){
+}catch(error){
 
     listeners = [];
 
@@ -967,10 +977,13 @@ try{
 ===================================================== */
 
 let currentTrackIndex = -1;
+
 let currentTrackDuration = 0;
+
 let radioIsLive = false;
 
 let playlistDurations = [];
+
 let playlistTotalDuration = 0;
 
 
@@ -1014,21 +1027,13 @@ function formatDate(date){
 
 function isListeningHours(){
 
-    const now = new Date();
-
-    const hour =
-        now.getHours();
-
-    const minute =
-        now.getMinutes();
-
-    const second =
-        now.getSeconds();
+    const now =
+        new Date();
 
     const totalSeconds =
-        hour * 3600 +
-        minute * 60 +
-        second;
+        now.getHours() * 3600 +
+        now.getMinutes() * 60 +
+        now.getSeconds();
 
     const start =
         START_HOUR * 3600;
@@ -1045,12 +1050,13 @@ function isListeningHours(){
 
 
 /* =====================================================
-   UPDATE CLOCK
+   CLOCK
 ===================================================== */
 
 function updateClock(){
 
-    const now = new Date();
+    const now =
+        new Date();
 
     currentTime.textContent =
         formatTime(now);
@@ -1072,12 +1078,18 @@ function updateLiveStatus(){
     const live =
         isListeningHours();
 
-    radioIsLive = live;
+    radioIsLive =
+        live;
 
     if(live){
 
-        liveBadge.classList.remove("offline");
-        liveBadge.classList.add("live");
+        liveBadge.classList.remove(
+            "offline"
+        );
+
+        liveBadge.classList.add(
+            "live"
+        );
 
         liveText.textContent =
             "STREAM LIVE";
@@ -1091,7 +1103,7 @@ function updateLiveStatus(){
         if(
             currentUser &&
             PLAYLIST.length &&
-            playlistTotalDuration
+            playlistTotalDuration > 0
         ){
 
             syncRadio();
@@ -1100,8 +1112,13 @@ function updateLiveStatus(){
 
     }else{
 
-        liveBadge.classList.remove("live");
-        liveBadge.classList.add("offline");
+        liveBadge.classList.remove(
+            "live"
+        );
+
+        liveBadge.classList.add(
+            "offline"
+        );
 
         liveText.textContent =
             "STREAM OFFLINE";
@@ -1150,12 +1167,12 @@ audioPlayer.volume =
 
 volumeSlider.value =
     Math.round(
-        audioPlayer.volume * 100
+        initialVolume * 100
     );
 
 volumeValue.textContent =
     Math.round(
-        audioPlayer.volume * 100
+        initialVolume * 100
     ) + "%";
 
 
@@ -1245,18 +1262,20 @@ function unmuteRadio(){
     if(!playlistTotalDuration){
 
         alert(
-            "Please wait a moment."
+            "Please wait while the playlist is loading."
         );
 
         return;
 
     }
 
-    audioPlayer.muted = false;
+    audioPlayer.muted =
+        false;
 
     if(audioPlayer.volume <= 0){
 
-        audioPlayer.volume = 0.80;
+        audioPlayer.volume =
+            0.80;
 
         localStorage.setItem(
             "jesiRadioVolume",
@@ -1273,6 +1292,10 @@ function unmuteRadio(){
 
 }
 
+
+/* =====================================================
+   PLAY BUTTON
+===================================================== */
 
 function updatePlayButton(){
 
@@ -1348,7 +1371,18 @@ function getAudioDuration(src){
         audio.src =
             src;
 
-        let finished = false;
+        let finished =
+            false;
+
+        const timeout =
+            setTimeout(
+                () => {
+
+                    finish(0);
+
+                },
+                15000
+            );
 
         function finish(value){
 
@@ -1356,7 +1390,12 @@ function getAudioDuration(src){
                 return;
             }
 
-            finished = true;
+            finished =
+                true;
+
+            clearTimeout(
+                timeout
+            );
 
             resolve(
                 Number.isFinite(value)
@@ -1375,7 +1414,9 @@ function getAudioDuration(src){
                 );
 
             },
-            {once:true}
+            {
+                once:true
+            }
         );
 
         audio.addEventListener(
@@ -1385,7 +1426,9 @@ function getAudioDuration(src){
                 finish(0);
 
             },
-            {once:true}
+            {
+                once:true
+            }
         );
 
     });
@@ -1394,7 +1437,7 @@ function getAudioDuration(src){
 
 
 /* =====================================================
-   LOAD PLAYLIST DURATIONS
+   PREPARE COMPLETE PLAYLIST
 ===================================================== */
 
 async function preparePlaylist(){
@@ -1408,15 +1451,17 @@ async function preparePlaylist(){
 
     }
 
-    /*
-       Keep duration scanning exactly as before.
-       Only the visible message is changed.
-    */
-
     songTitle.textContent =
         "Loading...";
 
-    playlistDurations = [];
+    playlistDurations =
+        new Array(
+            PLAYLIST.length
+        ).fill(0);
+
+    /*
+    Scan EVERY MP3.
+    */
 
     for(
         let i = 0;
@@ -1424,23 +1469,37 @@ async function preparePlaylist(){
         i++
     ){
 
-        const duration =
-            await getAudioDuration(
+        try{
+
+            playlistDurations[i] =
+                await getAudioDuration(
+                    PLAYLIST[i]
+                );
+
+        }catch(error){
+
+            playlistDurations[i] =
+                0;
+
+            console.warn(
+                "Duration error:",
                 PLAYLIST[i]
             );
 
-        playlistDurations.push(
-            duration
-        );
-
-        /*
-           Do NOT display scan progress.
-           Keep "Loading..." visible.
-        */
+        }
 
     }
 
+    /*
+    Remove only files whose browser
+    could not read their duration.
+
+    Normally every normal MP3 should
+    have a duration.
+    */
+
     const validPlaylist = [];
+
     const validDurations = [];
 
     for(
@@ -1461,6 +1520,13 @@ async function preparePlaylist(){
                 playlistDurations[i]
             );
 
+        }else{
+
+            console.warn(
+                "Skipped unreadable MP3:",
+                PLAYLIST[i]
+            );
+
         }
 
     }
@@ -1473,13 +1539,36 @@ async function preparePlaylist(){
 
     playlistTotalDuration =
         playlistDurations.reduce(
-            (a,b) => a + b,
+            (
+                total,
+                duration
+            ) =>
+                total + duration,
             0
         );
 
+    console.log(
+        "======================================"
+    );
+
+    console.log(
+        "TOTAL MP3 FILES:",
+        PLAYLIST.length
+    );
+
+    console.log(
+        "TOTAL PLAYLIST DURATION:",
+        playlistTotalDuration,
+        "seconds"
+    );
+
+    console.log(
+        "======================================"
+    );
+
     if(
-        !playlistTotalDuration ||
-        playlistTotalDuration <= 0
+        !PLAYLIST.length ||
+        !playlistTotalDuration
     ){
 
         songTitle.textContent =
@@ -1489,15 +1578,12 @@ async function preparePlaylist(){
 
     }
 
-    console.log(
-        "Total MP3 files:",
-        PLAYLIST.length
-    );
+    /*
+    Start from synchronized position.
+    */
 
-    console.log(
-        "Total playlist duration:",
-        playlistTotalDuration
-    );
+    currentTrackIndex =
+        -1;
 
     syncRadio();
 
@@ -1505,10 +1591,22 @@ async function preparePlaylist(){
 
 
 /* =====================================================
-   GET RADIO POSITION
+   RADIO POSITION
 ===================================================== */
 
 function getRadioPosition(){
+
+    if(
+        !playlistTotalDuration ||
+        !PLAYLIST.length
+    ){
+
+        return {
+            trackIndex:0,
+            offset:0
+        };
+
+    }
 
     const now =
         new Date();
@@ -1552,8 +1650,7 @@ function getRadioPosition(){
             playlistDurations[i];
 
         if(
-            position <
-            duration
+            position < duration
         ){
 
             return {
@@ -1577,7 +1674,7 @@ function getRadioPosition(){
 
 
 /* =====================================================
-   GET FILE TITLE
+   FILE TITLE
 ===================================================== */
 
 function getFileTitle(path){
@@ -1590,16 +1687,11 @@ function getFileTitle(path){
     try{
 
         name =
-            decodeURIComponent(name);
+            decodeURIComponent(
+                name
+            );
 
-    }catch(e){
-
-        console.log(
-            "Filename decode error:",
-            e
-        );
-
-    }
+    }catch(error){}
 
     name =
         name.replace(
@@ -1611,6 +1703,12 @@ function getFileTitle(path){
         name.replace(
             /[_-]+/g,
             " "
+        );
+
+    name =
+        name.replace(
+            /^\d+[\s._-]*/,
+            ""
         );
 
     name =
@@ -1635,22 +1733,36 @@ function syncRadio(){
         return;
     }
 
-    if(!playlistTotalDuration){
-        return;
-    }
+    if(
+        !playlistTotalDuration ||
+        !PLAYLIST.length
+    ){
 
-    if(!PLAYLIST.length){
         return;
+
     }
 
     const position =
         getRadioPosition();
 
-    const index =
+    let index =
         position.trackIndex;
 
-    const offset =
+    let offset =
         position.offset;
+
+    if(
+        index < 0 ||
+        index >= PLAYLIST.length
+    ){
+
+        index =
+            0;
+
+        offset =
+            0;
+
+    }
 
     const src =
         PLAYLIST[index];
@@ -1668,7 +1780,9 @@ function syncRadio(){
             index;
 
         currentTrackDuration =
-            playlistDurations[index];
+            playlistDurations[index] || 0;
+
+        audioPlayer.pause();
 
         audioPlayer.src =
             src;
@@ -1681,30 +1795,37 @@ function syncRadio(){
         songNumber.textContent =
             "";
 
-        const setPosition = () => {
+        const setPosition =
+            () => {
 
-            try{
+                try{
 
-                const safeDuration =
-                    Math.max(
-                        0,
-                        (
-                            playlistDurations[index] ||
-                            1
-                        ) - 0.2
-                    );
+                    const duration =
+                        playlistDurations[index];
 
-                audioPlayer.currentTime =
-                    Math.min(
-                        offset,
-                        safeDuration
-                    );
+                    if(
+                        duration > 0
+                    ){
 
-            }catch(e){}
+                        audioPlayer.currentTime =
+                            Math.min(
+                                Math.max(
+                                    0,
+                                    offset
+                                ),
+                                Math.max(
+                                    0,
+                                    duration - 0.2
+                                )
+                            );
 
-            tryPlay();
+                    }
 
-        };
+                }catch(error){}
+
+                tryPlay();
+
+            };
 
         if(
             audioPlayer.readyState >= 1
@@ -1717,7 +1838,9 @@ function syncRadio(){
             audioPlayer.addEventListener(
                 "loadedmetadata",
                 setPosition,
-                {once:true}
+                {
+                    once:true
+                }
             );
 
         }
@@ -1729,17 +1852,20 @@ function syncRadio(){
                 (
                     audioPlayer.currentTime ||
                     0
-                ) - offset
+                ) -
+                offset
             );
 
-        if(difference > 2){
+        if(
+            difference > 2
+        ){
 
             try{
 
                 audioPlayer.currentTime =
                     offset;
 
-            }catch(e){}
+            }catch(error){}
 
         }
 
@@ -1751,7 +1877,7 @@ function syncRadio(){
 
 
 /* =====================================================
-   PLAY
+   PLAY AUDIO
 ===================================================== */
 
 function tryPlay(){
@@ -1776,16 +1902,18 @@ function tryPlay(){
         "function"
     ){
 
-        promise.catch(error => {
+        promise.catch(
+            error => {
 
-            console.log(
-                "Autoplay/play blocked:",
-                error
-            );
+                console.log(
+                    "Play waiting for user:",
+                    error
+                );
 
-            updatePlayButton();
+                updatePlayButton();
 
-        });
+            }
+        );
 
     }
 
@@ -1800,9 +1928,92 @@ audioPlayer.addEventListener(
     "ended",
     () => {
 
-        currentTrackIndex = -1;
+        if(
+            !PLAYLIST.length
+        ){
 
-        syncRadio();
+            return;
+
+        }
+
+        /*
+        Go to the NEXT track.
+        */
+
+        let nextIndex =
+            currentTrackIndex + 1;
+
+        /*
+        After the LAST track,
+        return to FIRST track.
+        */
+
+        if(
+            nextIndex >= PLAYLIST.length
+        ){
+
+            nextIndex =
+                0;
+
+        }
+
+        currentTrackIndex =
+            nextIndex;
+
+        currentTrackDuration =
+            playlistDurations[nextIndex] || 0;
+
+        const nextSrc =
+            PLAYLIST[nextIndex];
+
+        if(!nextSrc){
+            return;
+        }
+
+        audioPlayer.pause();
+
+        audioPlayer.src =
+            nextSrc;
+
+        audioPlayer.load();
+
+        songTitle.textContent =
+            getFileTitle(nextSrc);
+
+        songNumber.textContent =
+            "";
+
+        const playNext =
+            () => {
+
+                try{
+
+                    audioPlayer.currentTime =
+                        0;
+
+                }catch(error){}
+
+                tryPlay();
+
+            };
+
+        if(
+            audioPlayer.readyState >= 1
+        ){
+
+            playNext();
+
+        }else{
+
+            audioPlayer.addEventListener(
+                "loadedmetadata",
+                playNext,
+                {
+                    once:true
+                }
+            );
+
+        }
 
         updateEqualizer();
 
@@ -1829,14 +2040,84 @@ audioPlayer.addEventListener(
     () => {
 
         updateVolumeUI();
+
         updatePlayButton();
+
+    }
+);
+
+audioPlayer.addEventListener(
+    "error",
+    () => {
+
+        console.error(
+            "Audio error:",
+            audioPlayer.src
+        );
+
+        /*
+        Automatically try the next track
+        if one MP3 has an error.
+        */
+
+        if(
+            PLAYLIST.length > 1
+        ){
+
+            setTimeout(
+                () => {
+
+                    let nextIndex =
+                        currentTrackIndex + 1;
+
+                    if(
+                        nextIndex >=
+                        PLAYLIST.length
+                    ){
+
+                        nextIndex =
+                            0;
+
+                    }
+
+                    currentTrackIndex =
+                        nextIndex;
+
+                    const nextSrc =
+                        PLAYLIST[nextIndex];
+
+                    audioPlayer.src =
+                        nextSrc;
+
+                    audioPlayer.load();
+
+                    songTitle.textContent =
+                        getFileTitle(
+                            nextSrc
+                        );
+
+                    audioPlayer.addEventListener(
+                        "loadedmetadata",
+                        () => {
+                            tryPlay();
+                        },
+                        {
+                            once:true
+                        }
+                    );
+
+                },
+                1000
+            );
+
+        }
 
     }
 );
 
 
 /* =====================================================
-   JOIN USER
+   JOIN RADIO
 ===================================================== */
 
 function joinRadio(){
@@ -1871,7 +2152,9 @@ function joinRadio(){
 
     }
 
-    if(password.length < 4){
+    if(
+        password.length < 4
+    ){
 
         alert(
             "Password must be at least 4 characters."
@@ -1959,7 +2242,9 @@ function joinRadio(){
 
 function renderListeners(){
 
-    if(!listeners.length){
+    if(
+        !listeners.length
+    ){
 
         joinMessage.textContent =
             "No listeners yet.";
@@ -1979,28 +2264,30 @@ function renderListeners(){
 
     joinList.innerHTML =
         listeners
-        .map(item => {
+        .map(
+            item => {
 
-            const date =
-                new Date(
-                    item.joinedAt
-                );
+                const date =
+                    new Date(
+                        item.joinedAt
+                    );
 
-            return `
-                <div class="joinItem">
+                return `
+                    <div class="joinItem">
 
-                    <div class="joinName">
-                        ${escapeHTML(item.name)}
+                        <div class="joinName">
+                            ${escapeHTML(item.name)}
+                        </div>
+
+                        <div class="joinTime">
+                            ${formatTime(date)}
+                        </div>
+
                     </div>
+                `;
 
-                    <div class="joinTime">
-                        ${formatTime(date)}
-                    </div>
-
-                </div>
-            `;
-
-        })
+            }
+        )
         .join("");
 
 }
@@ -2077,28 +2364,30 @@ joinBtn.addEventListener(
     nameInput,
     passwordInput
 ]
-.forEach(input => {
+.forEach(
+    input => {
 
-    input.addEventListener(
-        "keydown",
-        event => {
+        input.addEventListener(
+            "keydown",
+            event => {
 
-            if(
-                event.key === "Enter"
-            ){
+                if(
+                    event.key === "Enter"
+                ){
 
-                joinRadio();
+                    joinRadio();
+
+                }
 
             }
+        );
 
-        }
-    );
-
-});
+    }
+);
 
 
 /* =====================================================
-   CHECK EXISTING SESSION
+   EXISTING SESSION
 ===================================================== */
 
 function checkExistingSession(){
@@ -2124,17 +2413,12 @@ function checkExistingSession(){
 
 
 /* =====================================================
-   AUTOMATIC MP3 LOADER
+   GITHUB MP3 LOADER
 ===================================================== */
 
 async function loadMP3Playlist(){
 
     try{
-
-        /*
-           Only show Loading...
-           while the MP3 folder is being read.
-        */
 
         songTitle.textContent =
             "Loading...";
@@ -2148,7 +2432,9 @@ async function loadMP3Playlist(){
             .filter(Boolean);
 
         /*
-           GitHub Pages detection
+        =====================================================
+        GITHUB PAGES
+        =====================================================
         */
 
         if(
@@ -2174,81 +2460,192 @@ async function loadMP3Playlist(){
 
             }
 
-            const apiURL =
-                `https://api.github.com/repos/${encodeURIComponent(username)}/${encodeURIComponent(repo)}/contents/mp3`;
+            /*
+            Get repository information
+            */
 
-            console.log(
-                "Reading MP3 folder:",
-                apiURL
-            );
+            const repoURL =
+                `https://api.github.com/repos/${encodeURIComponent(username)}/${encodeURIComponent(repo)}`;
 
-            const response =
+            const repoResponse =
                 await fetch(
-                    apiURL,
+                    repoURL,
                     {
                         cache:"no-store"
                     }
                 );
 
-            if(!response.ok){
-
-                throw new Error(
-                    "GitHub MP3 folder could not be read. HTTP " +
-                    response.status
-                );
-
-            }
-
-            const files =
-                await response.json();
-
             if(
-                !Array.isArray(files)
+                !repoResponse.ok
             ){
 
                 throw new Error(
-                    "Invalid GitHub folder response."
+                    "GitHub repository error: HTTP " +
+                    repoResponse.status
                 );
 
             }
 
-            PLAYLIST =
-                files
-                .filter(file =>
-                    file &&
-                    file.type === "file" &&
-                    /\.mp3$/i.test(
-                        file.name || ""
-                    )
+            const repoData =
+                await repoResponse.json();
+
+            const branch =
+                repoData.default_branch ||
+                "main";
+
+            /*
+            =================================================
+            GET COMPLETE REPOSITORY TREE
+            =================================================
+            */
+
+            const treeURL =
+                `https://api.github.com/repos/${encodeURIComponent(username)}/${encodeURIComponent(repo)}/git/trees/${encodeURIComponent(branch)}?recursive=1`;
+
+            console.log(
+                "Reading complete GitHub tree:"
+            );
+
+            console.log(
+                treeURL
+            );
+
+            const treeResponse =
+                await fetch(
+                    treeURL,
+                    {
+                        cache:"no-store"
+                    }
+                );
+
+            if(
+                !treeResponse.ok
+            ){
+
+                throw new Error(
+                    "GitHub tree error: HTTP " +
+                    treeResponse.status
+                );
+
+            }
+
+            const treeData =
+                await treeResponse.json();
+
+            if(
+                !treeData.tree ||
+                !Array.isArray(
+                    treeData.tree
+                )
+            ){
+
+                throw new Error(
+                    "Invalid GitHub tree."
+                );
+
+            }
+
+            /*
+            =================================================
+            FIND ALL MP3 FILES
+            =================================================
+            */
+
+            const mp3Files =
+                treeData.tree
+                .filter(
+                    file => {
+
+                        if(
+                            !file ||
+                            file.type !==
+                            "blob" ||
+                            !file.path
+                        ){
+
+                            return false;
+
+                        }
+
+                        const lowerPath =
+                            file.path
+                            .toLowerCase();
+
+                        return (
+                            lowerPath.startsWith(
+                                "mp3/"
+                            ) &&
+                            lowerPath.endsWith(
+                                ".mp3"
+                            )
+                        );
+
+                    }
                 )
                 .sort(
                     (a,b) =>
-                        a.name.localeCompare(
-                            b.name,
+                        a.path.localeCompare(
+                            b.path,
                             undefined,
                             {
                                 numeric:true,
                                 sensitivity:"base"
                             }
                         )
-                )
-                .map(
-                    file =>
-                        file.download_url ||
-                        (
-                            "mp3/" +
-                            encodeURIComponent(
-                                file.name
+                );
+
+            /*
+            =================================================
+            CREATE RAW GITHUB URL
+            =================================================
+            */
+
+            PLAYLIST =
+                mp3Files.map(
+                    file => {
+
+                        const encodedPath =
+                            file.path
+                            .split("/")
+                            .map(
+                                part =>
+                                    encodeURIComponent(
+                                        part
+                                    )
                             )
-                        )
+                            .join("/");
+
+                        return (
+                            `https://raw.githubusercontent.com/` +
+                            `${username}/` +
+                            `${repo}/` +
+                            `${encodeURIComponent(branch)}/` +
+                            `${encodedPath}`
+                        );
+
+                    }
                 );
 
             console.log(
-                "MP3 files found:",
+                "======================================"
+            );
+
+            console.log(
+                "ALL MP3 FILES FOUND:",
+                PLAYLIST.length
+            );
+
+            console.log(
                 PLAYLIST
             );
 
-            if(!PLAYLIST.length){
+            console.log(
+                "======================================"
+            );
+
+            if(
+                !PLAYLIST.length
+            ){
 
                 songTitle.textContent =
                     "No MP3 files found in mp3 folder.";
@@ -2257,15 +2654,20 @@ async function loadMP3Playlist(){
 
             }
 
+            /*
+            Prepare every track.
+            */
+
             await preparePlaylist();
 
             return;
 
         }
 
-
         /*
-           Normal server fallback.
+        =====================================================
+        NORMAL WEB SERVER
+        =====================================================
         */
 
         await loadMP3FromFolder();
@@ -2273,7 +2675,7 @@ async function loadMP3Playlist(){
     }catch(error){
 
         console.error(
-            "MP3 auto-load error:",
+            "MP3 loader error:",
             error
         );
 
@@ -2281,11 +2683,11 @@ async function loadMP3Playlist(){
 
             await loadMP3FromFolder();
 
-        }catch(e){
+        }catch(fallbackError){
 
             console.error(
-                "Fallback failed:",
-                e
+                "Fallback error:",
+                fallbackError
             );
 
             songTitle.textContent =
@@ -2299,7 +2701,7 @@ async function loadMP3Playlist(){
 
 
 /* =====================================================
-   NORMAL SERVER FOLDER FALLBACK
+   NORMAL SERVER MP3 LOADER
 ===================================================== */
 
 async function loadMP3FromFolder(){
@@ -2314,7 +2716,9 @@ async function loadMP3FromFolder(){
                 }
             );
 
-        if(!response.ok){
+        if(
+            !response.ok
+        ){
 
             throw new Error(
                 "Cannot read mp3 folder."
@@ -2408,11 +2812,13 @@ async function loadMP3FromFolder(){
             );
 
         console.log(
-            "MP3 files found:",
-            PLAYLIST
+            "NORMAL SERVER MP3 FILES:",
+            PLAYLIST.length
         );
 
-        if(!PLAYLIST.length){
+        if(
+            !PLAYLIST.length
+        ){
 
             songTitle.textContent =
                 "No MP3 files found.";
@@ -2448,7 +2854,7 @@ setInterval(
 
 
 /* =====================================================
-   RADIO SYNCHRONIZATION
+   RADIO SYNC
 ===================================================== */
 
 setInterval(
@@ -2457,7 +2863,7 @@ setInterval(
         if(
             currentUser &&
             radioIsLive &&
-            playlistTotalDuration
+            playlistTotalDuration > 0
         ){
 
             syncRadio();

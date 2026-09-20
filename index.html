@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -540,6 +541,7 @@ body{
     }
 }
 </style>
+
 </head>
 
 <body>
@@ -552,52 +554,53 @@ body{
 
 <div id="loginPage">
 
-    <div class="logo">
-        Kuya J <span>LIVE RADIO</span>
-    </div>
+```
+<div class="logo">
+    Kuya J <span>LIVE RADIO</span>
+</div>
 
-    <div class="subtitle">
-        Create your listener account to enter the stream.
-    </div>
+<div class="subtitle">
+    Create your listener account to enter the stream.
+</div>
 
-    <div class="field">
+<div class="field">
 
-        <label>Your Name</label>
+    <label>Your Name</label>
 
-        <input
-            id="nameInput"
-            type="text"
-            maxlength="30"
-            autocomplete="name"
-            placeholder="Enter your name"
-        >
-
-    </div>
-
-    <div class="field">
-
-        <label>Password</label>
-
-        <input
-            id="passwordInput"
-            type="password"
-            maxlength="50"
-            placeholder="Create your password"
-        >
-
-    </div>
-
-    <button class="joinBtn" id="joinBtn">
-        JOIN THE STREAM
-    </button>
-
-    <div class="loginInfo">
-        Listening Hours<br>
-        <strong>6:00 AM – 10:00 PM</strong>
-    </div>
+    <input
+        id="nameInput"
+        type="text"
+        maxlength="30"
+        autocomplete="name"
+        placeholder="Enter your name"
+    >
 
 </div>
 
+<div class="field">
+
+    <label>Password</label>
+
+    <input
+        id="passwordInput"
+        type="password"
+        maxlength="50"
+        placeholder="Create your password"
+    >
+
+</div>
+
+<button class="joinBtn" id="joinBtn">
+    JOIN THE STREAM
+</button>
+
+<div class="loginInfo">
+    Listening Hours<br>
+    <strong>6:00 AM – 10:00 PM</strong>
+</div>
+```
+
+</div>
 
 <!-- =================================================
      RADIO PAGE
@@ -607,116 +610,46 @@ body{
 
 <div class="radioCard">
 
-    <div class="header">
+```
+<div class="header">
 
-        <div class="brand">
-            Kuya J <span>LIVE RADIO</span>
-        </div>
+    <div class="brand">
+        Kuya J <span>LIVE RADIO</span>
+    </div>
 
-        <div id="liveBadge" class="liveBadge offline">
+    <div id="liveBadge" class="liveBadge offline">
 
-            <div class="liveDot"></div>
+        <div class="liveDot"></div>
 
-            <span id="liveText">
-                STREAM OFFLINE
-            </span>
-
-        </div>
+        <span id="liveText">
+            STREAM OFFLINE
+        </span>
 
     </div>
 
+</div>
 
-    <!-- TIME -->
 
-    <div class="timeGrid">
+<!-- TIME -->
 
-        <div class="infoBox">
+<div class="timeGrid">
 
-            <div class="infoTitle">
-                CURRENT TIME
-            </div>
+    <div class="infoBox">
 
-            <div
-                class="infoValue"
-                id="currentTime"
-            >
-                --:--:--
-            </div>
-
-            <div
-                class="infoSmall"
-                id="currentDate"
-            >
-                --
-            </div>
-
+        <div class="infoTitle">
+            CURRENT TIME
         </div>
-
-
-        <div class="infoBox">
-
-            <div class="infoTitle">
-                LISTENING HOURS
-            </div>
-
-            <div class="infoValue">
-                6:00 AM – 10:00 PM
-            </div>
-
-            <div class="infoSmall">
-                Daily
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!-- NOW PLAYING -->
-
-    <div
-        class="nowPlaying"
-        id="nowPlayingBox"
-    >
 
         <div
-            class="equalizer"
-            id="equalizer"
-            aria-hidden="true"
+            class="infoValue"
+            id="currentTime"
         >
-
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-
-        </div>
-
-        <div class="onAir">
-            ● ON AIR
+            --:--:--
         </div>
 
         <div
-            class="songTitle"
-            id="songTitle"
-        >
-            Loading...
-        </div>
-
-        <div
-            class="songNumber"
-            id="songNumber"
+            class="infoSmall"
+            id="currentDate"
         >
             --
         </div>
@@ -724,121 +657,192 @@ body{
     </div>
 
 
-    <!-- OFFLINE -->
+    <div class="infoBox">
+
+        <div class="infoTitle">
+            LISTENING HOURS
+        </div>
+
+        <div class="infoValue">
+            6:00 AM – 10:00 PM
+        </div>
+
+        <div class="infoSmall">
+            Daily
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- NOW PLAYING -->
+
+<div
+    class="nowPlaying"
+    id="nowPlayingBox"
+>
 
     <div
-        class="offlineBox"
-        id="offlineBox"
+        class="equalizer"
+        id="equalizer"
+        aria-hidden="true"
     >
 
-        <div class="offlineIcon">
-            🔴
-        </div>
-
-        <div class="offlineTitle">
-            STREAM IS OFFLINE
-        </div>
-
-        <div class="offlineText">
-            Listening hours are from
-            6:00 AM to 10:00 PM.
-            <br>
-            Please come back during listening hours.
-        </div>
-
-    </div>
-
-
-    <!-- AUDIO -->
-
-    <div class="audioArea">
-
-        <audio
-            id="audioPlayer"
-            preload="auto"
-            playsinline
-        ></audio>
-
-        <button
-            id="unmuteBtn"
-            class="unmuteBtn"
-            onclick="unmuteRadio()"
-            title="Play / Unmute"
-            aria-label="Play / Unmute"
-        >
-            ▶️
-        </button>
-
-        <div class="volumeBox">
-
-            <div
-                class="volumeIcon"
-                id="volumeIcon"
-            >
-                🔊
-            </div>
-
-            <input
-                id="volumeSlider"
-                type="range"
-                min="0"
-                max="100"
-                value="80"
-                aria-label="Volume"
-            >
-
-            <div
-                class="volumeValue"
-                id="volumeValue"
-            >
-                80%
-            </div>
-
-        </div>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
 
     </div>
 
+    <div class="onAir">
+        ● ON AIR
+    </div>
 
-    <!-- JOIN NOTIFICATION -->
+    <div
+        class="songTitle"
+        id="songTitle"
+    >
+        Loading...
+    </div>
 
-    <div class="joinSection">
+    <div
+        class="songNumber"
+        id="songNumber"
+    >
+        --
+    </div>
 
-        <div class="joinHeader">
+</div>
 
-            <div
-                class="joinMessage"
-                id="joinMessage"
-            >
-                No listeners yet.
-            </div>
 
-            <button
-                class="expandBtn"
-                id="expandBtn"
-            >
-                Expand
-            </button>
+<!-- OFFLINE -->
 
-        </div>
+<div
+    class="offlineBox"
+    id="offlineBox"
+>
+
+    <div class="offlineIcon">
+        🔴
+    </div>
+
+    <div class="offlineTitle">
+        STREAM IS OFFLINE
+    </div>
+
+    <div class="offlineText">
+        Listening hours are from
+        6:00 AM to 10:00 PM.
+        <br>
+        Please come back during listening hours.
+    </div>
+
+</div>
+
+
+<!-- AUDIO -->
+
+<div class="audioArea">
+
+    <audio
+        id="audioPlayer"
+        preload="auto"
+        playsinline
+    ></audio>
+
+    <button
+        id="unmuteBtn"
+        class="unmuteBtn"
+        onclick="unmuteRadio()"
+        title="Play / Unmute"
+        aria-label="Play / Unmute"
+    >
+        ▶️
+    </button>
+
+    <div class="volumeBox">
 
         <div
-            class="joinList"
-            id="joinList"
-        ></div>
+            class="volumeIcon"
+            id="volumeIcon"
+        >
+            🔊
+        </div>
+
+        <input
+            id="volumeSlider"
+            type="range"
+            min="0"
+            max="100"
+            value="80"
+            aria-label="Volume"
+        >
+
+        <div
+            class="volumeValue"
+            id="volumeValue"
+        >
+            80%
+        </div>
 
     </div>
 
+</div>
 
-    <div class="footer">
-        Kuya J Live Radio
+
+<!-- JOIN NOTIFICATION -->
+
+<div class="joinSection">
+
+    <div class="joinHeader">
+
+        <div
+            class="joinMessage"
+            id="joinMessage"
+        >
+            No listeners yet.
+        </div>
+
+        <button
+            class="expandBtn"
+            id="expandBtn"
+        >
+            Expand
+        </button>
+
     </div>
 
+    <div
+        class="joinList"
+        id="joinList"
+    ></div>
+
 </div>
+
+
+<div class="footer">
+    Kuya J Live Radio
+</div>
+```
 
 </div>
 
 </div>
 
+</div>
 
 <script>
 
@@ -1408,6 +1412,11 @@ async function preparePlaylist(){
 
     }
 
+    /*
+       Keep duration scanning exactly as before.
+       Only the visible message is changed.
+    */
+
     songTitle.textContent =
         "Loading...";
 
@@ -1428,24 +1437,12 @@ async function preparePlaylist(){
             duration
         );
 
-        songTitle.textContent =
-            "Loading " +
-            (i + 1) +
-            " / " +
-            PLAYLIST.length;
+        /*
+           Do NOT display scan progress.
+           Keep "Loading..." visible.
+        */
 
     }
-
-    playlistTotalDuration =
-        playlistDurations.reduce(
-            (a,b) =>
-                a + (
-                    Number.isFinite(b)
-                        ? b
-                        : 0
-                ),
-            0
-        );
 
     const validPlaylist = [];
     const validDurations = [];
@@ -1490,7 +1487,7 @@ async function preparePlaylist(){
     ){
 
         songTitle.textContent =
-            "Error";
+            "No playable MP3 files found.";
 
         return;
 
@@ -1594,17 +1591,6 @@ function getFileTitle(path){
         .split("/")
         .pop();
 
-    /*
-       Decode URL encoded filename.
-
-       Example:
-       Basang%20basa%20sa%20ulan.mp3
-
-       becomes:
-
-       Basang basa sa ulan.mp3
-    */
-
     try{
 
         name =
@@ -1613,15 +1599,11 @@ function getFileTitle(path){
     }catch(e){
 
         console.log(
-            "error:",
+            "Filename decode error:",
             e
         );
 
     }
-
-    /*
-       Remove MP3 extension.
-    */
 
     name =
         name.replace(
@@ -1629,20 +1611,11 @@ function getFileTitle(path){
             ""
         );
 
-    /*
-       Replace underscores and dashes
-       with normal spaces.
-    */
-
     name =
         name.replace(
             /[_-]+/g,
             " "
         );
-
-    /*
-       Clean repeated spaces.
-    */
 
     name =
         name.replace(
@@ -2162,8 +2135,13 @@ async function loadMP3Playlist(){
 
     try{
 
+        /*
+           Only show Loading...
+           while the MP3 folder is being read.
+        */
+
         songTitle.textContent =
-            "waiting...";
+            "Loading...";
 
         const host =
             location.hostname;
@@ -2237,13 +2215,6 @@ async function loadMP3Playlist(){
                 );
 
             }
-
-            /*
-               Use GitHub download_url.
-
-               This is more reliable than building
-               the relative MP3 URL ourselves.
-            */
 
             PLAYLIST =
                 files

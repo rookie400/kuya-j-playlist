@@ -1409,7 +1409,7 @@ async function preparePlaylist(){
     }
 
     songTitle.textContent =
-        "Preparing playlist...";
+        "Loading...";
 
     playlistDurations = [];
 
@@ -1429,7 +1429,7 @@ async function preparePlaylist(){
         );
 
         songTitle.textContent =
-            "Preparing playlist " +
+            "Loading " +
             (i + 1) +
             " / " +
             PLAYLIST.length;
@@ -1490,7 +1490,7 @@ async function preparePlaylist(){
     ){
 
         songTitle.textContent =
-            "No playable MP3 files found.";
+            "Error";
 
         return;
 
@@ -1613,7 +1613,7 @@ function getFileTitle(path){
     }catch(e){
 
         console.log(
-            "Filename decode error:",
+            "error:",
             e
         );
 

@@ -250,6 +250,53 @@ body{
     margin-bottom:12px;
 }
 
+.equalizer{
+    height:82px;
+    display:flex;
+    align-items:flex-end;
+    justify-content:center;
+    gap:5px;
+    margin:0 auto 20px;
+    padding:0 10px;
+    max-width:360px;
+}
+
+.equalizer span{
+    width:7px;
+    height:12px;
+    border-radius:5px 5px 2px 2px;
+    background:#00ff88;
+    opacity:.85;
+}
+
+.equalizer.playing span{
+    animation:equalize .72s ease-in-out infinite alternate;
+}
+
+.equalizer.playing span:nth-child(1){animation-delay:-.10s}
+.equalizer.playing span:nth-child(2){animation-delay:-.32s}
+.equalizer.playing span:nth-child(3){animation-delay:-.52s}
+.equalizer.playing span:nth-child(4){animation-delay:-.18s}
+.equalizer.playing span:nth-child(5){animation-delay:-.40s}
+.equalizer.playing span:nth-child(6){animation-delay:-.62s}
+.equalizer.playing span:nth-child(7){animation-delay:-.28s}
+.equalizer.playing span:nth-child(8){animation-delay:-.48s}
+.equalizer.playing span:nth-child(9){animation-delay:-.70s}
+.equalizer.playing span:nth-child(10){animation-delay:-.22s}
+.equalizer.playing span:nth-child(11){animation-delay:-.55s}
+.equalizer.playing span:nth-child(12){animation-delay:-.36s}
+.equalizer.playing span:nth-child(13){animation-delay:-.66s}
+.equalizer.playing span:nth-child(14){animation-delay:-.14s}
+.equalizer.playing span:nth-child(15){animation-delay:-.44s}
+
+@keyframes equalize{
+    0%{height:10px}
+    25%{height:28px}
+    50%{height:58px}
+    75%{height:36px}
+    100%{height:76px}
+}
+
 .songTitle{
     font-size:25px;
     font-weight:800;
@@ -257,9 +304,7 @@ body{
 }
 
 .songNumber{
-    color:#777;
-    font-size:12px;
-    margin-top:8px;
+    display:none;
 }
 
 /* =====================================================
@@ -271,14 +316,71 @@ body{
     margin-bottom:18px;
 }
 
-/*
-   The audio element is intentionally hidden.
-   There are no listener playback buttons.
-*/
-
 #audioPlayer{
     width:100%;
     display:none;
+}
+
+/* =====================================================
+   ROUND PLAY / UNMUTE BUTTON
+===================================================== */
+
+.unmuteBtn{
+    width:50px;
+    height:50px;
+    border-radius:50%;
+    border:0;
+    background:#00ff88;
+    color:#00150b;
+    font-size:22px;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin:0 auto 15px;
+    box-shadow:0 0 15px rgba(0,255,136,.35);
+    transition:.15s;
+}
+
+.unmuteBtn:hover{
+    transform:scale(1.08);
+}
+
+.unmuteBtn:active{
+    transform:scale(.95);
+}
+
+/* =====================================================
+   VOLUME
+===================================================== */
+
+.volumeBox{
+    width:min(100%,360px);
+    margin:20px auto 0;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    color:#aaa;
+}
+
+.volumeIcon{
+    font-size:17px;
+    width:24px;
+    text-align:center;
+}
+
+#volumeSlider{
+    flex:1;
+    height:5px;
+    accent-color:#00ff88;
+    cursor:pointer;
+}
+
+.volumeValue{
+    width:42px;
+    text-align:right;
+    color:#777;
+    font-size:11px;
 }
 
 /* =====================================================
@@ -444,224 +546,296 @@ body{
 
 <div class="container">
 
-    <!-- =================================================
-         LOGIN PAGE
-    ================================================== -->
+<!-- =================================================
+     LOGIN PAGE
+================================================== -->
 
-    <div id="loginPage">
+<div id="loginPage">
 
-        <div class="logo">
-            JESI <span>LIVE RADIO</span>
+    <div class="logo">
+        Kuya J <span>LIVE RADIO</span>
+    </div>
+
+    <div class="subtitle">
+        Create your listener account to enter the stream.
+    </div>
+
+    <div class="field">
+
+        <label>Your Name</label>
+
+        <input
+            id="nameInput"
+            type="text"
+            maxlength="30"
+            autocomplete="name"
+            placeholder="Enter your name"
+        >
+
+    </div>
+
+    <div class="field">
+
+        <label>Password</label>
+
+        <input
+            id="passwordInput"
+            type="password"
+            maxlength="50"
+            placeholder="Create your password"
+        >
+
+    </div>
+
+    <button class="joinBtn" id="joinBtn">
+        JOIN THE STREAM
+    </button>
+
+    <div class="loginInfo">
+        Listening Hours<br>
+        <strong>6:00 AM – 10:00 PM</strong>
+    </div>
+
+</div>
+
+
+<!-- =================================================
+     RADIO PAGE
+================================================== -->
+
+<div id="radioPage">
+
+<div class="radioCard">
+
+    <div class="header">
+
+        <div class="brand">
+            Kuya J <span>LIVE RADIO</span>
         </div>
 
-        <div class="subtitle">
-            Create your listener account to enter the stream.
+        <div id="liveBadge" class="liveBadge offline">
+
+            <div class="liveDot"></div>
+
+            <span id="liveText">
+                STREAM OFFLINE
+            </span>
+
         </div>
 
-        <div class="field">
-            <label>Your Name</label>
-            <input
-                id="nameInput"
-                type="text"
-                maxlength="30"
-                autocomplete="name"
-                placeholder="Enter your name"
+    </div>
+
+
+    <!-- TIME -->
+
+    <div class="timeGrid">
+
+        <div class="infoBox">
+
+            <div class="infoTitle">
+                CURRENT TIME
+            </div>
+
+            <div
+                class="infoValue"
+                id="currentTime"
             >
-        </div>
+                --:--:--
+            </div>
 
-        <div class="field">
-            <label>Password</label>
-            <input
-                id="passwordInput"
-                type="password"
-                maxlength="50"
-                placeholder="Create your password"
+            <div
+                class="infoSmall"
+                id="currentDate"
             >
+                --
+            </div>
+
         </div>
 
-        <button class="joinBtn" id="joinBtn">
-            JOIN THE STREAM
+
+        <div class="infoBox">
+
+            <div class="infoTitle">
+                LISTENING HOURS
+            </div>
+
+            <div class="infoValue">
+                6:00 AM – 10:00 PM
+            </div>
+
+            <div class="infoSmall">
+                Daily
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- NOW PLAYING -->
+
+    <div
+        class="nowPlaying"
+        id="nowPlayingBox"
+    >
+
+        <div
+            class="equalizer"
+            id="equalizer"
+            aria-hidden="true"
+        >
+
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </div>
+
+        <div class="onAir">
+            ● ON AIR
+        </div>
+
+        <div
+            class="songTitle"
+            id="songTitle"
+        >
+            Loading playlist...
+        </div>
+
+        <div
+            class="songNumber"
+            id="songNumber"
+        >
+            --
+        </div>
+
+    </div>
+
+
+    <!-- OFFLINE -->
+
+    <div
+        class="offlineBox"
+        id="offlineBox"
+    >
+
+        <div class="offlineIcon">
+            🔴
+        </div>
+
+        <div class="offlineTitle">
+            STREAM IS OFFLINE
+        </div>
+
+        <div class="offlineText">
+            Listening hours are from
+            6:00 AM to 10:00 PM.
+            <br>
+            Please come back during listening hours.
+        </div>
+
+    </div>
+
+
+    <!-- AUDIO -->
+
+    <div class="audioArea">
+
+        <audio
+            id="audioPlayer"
+            preload="auto"
+            playsinline
+        ></audio>
+
+        <button
+            id="unmuteBtn"
+            class="unmuteBtn"
+            onclick="unmuteRadio()"
+            title="Play / Unmute"
+            aria-label="Play / Unmute"
+        >
+            ▶️
         </button>
 
-        <div class="loginInfo">
-            Listening Hours<br>
-            <strong>6:00 AM – 10:00 PM</strong>
+        <div class="volumeBox">
+
+            <div
+                class="volumeIcon"
+                id="volumeIcon"
+            >
+                🔊
+            </div>
+
+            <input
+                id="volumeSlider"
+                type="range"
+                min="0"
+                max="100"
+                value="80"
+                aria-label="Volume"
+            >
+
+            <div
+                class="volumeValue"
+                id="volumeValue"
+            >
+                80%
+            </div>
+
         </div>
 
     </div>
 
 
-    <!-- =================================================
-         RADIO PAGE
-    ================================================== -->
+    <!-- JOIN NOTIFICATION -->
 
-    <div id="radioPage">
+    <div class="joinSection">
 
-        <div class="radioCard">
-
-            <div class="header">
-
-                <div class="brand">
-                    JESI <span>LIVE RADIO</span>
-                </div>
-
-                <div id="liveBadge" class="liveBadge offline">
-                    <div class="liveDot"></div>
-                    <span id="liveText">STREAM OFFLINE</span>
-                </div>
-
-            </div>
-
-
-            <!-- TIME -->
-
-            <div class="timeGrid">
-
-                <div class="infoBox">
-
-                    <div class="infoTitle">
-                        CURRENT TIME
-                    </div>
-
-                    <div
-                        class="infoValue"
-                        id="currentTime"
-                    >
-                        --:--:--
-                    </div>
-
-                    <div
-                        class="infoSmall"
-                        id="currentDate"
-                    >
-                        --
-                    </div>
-
-                </div>
-
-
-                <div class="infoBox">
-
-                    <div class="infoTitle">
-                        LISTENING HOURS
-                    </div>
-
-                    <div class="infoValue">
-                        6:00 AM – 10:00 PM
-                    </div>
-
-                    <div class="infoSmall">
-                        Daily
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- NOW PLAYING -->
+        <div class="joinHeader">
 
             <div
-                class="nowPlaying"
-                id="nowPlayingBox"
+                class="joinMessage"
+                id="joinMessage"
             >
-
-                <div class="onAir">
-                    ● ON AIR
-                </div>
-
-                <div
-                    class="songTitle"
-                    id="songTitle"
-                >
-                    Loading playlist...
-                </div>
-
-                <div
-                    class="songNumber"
-                    id="songNumber"
-                >
-                    --
-                </div>
-
+                No listeners yet.
             </div>
 
-
-            <!-- OFFLINE -->
-
-            <div
-                class="offlineBox"
-                id="offlineBox"
+            <button
+                class="expandBtn"
+                id="expandBtn"
             >
-
-                <div class="offlineIcon">
-                    🔴
-                </div>
-
-                <div class="offlineTitle">
-                    STREAM IS OFFLINE
-                </div>
-
-                <div class="offlineText">
-                    Listening hours are from
-                    6:00 AM to 10:00 PM.
-                    <br>
-                    Please come back during listening hours.
-                </div>
-
-            </div>
-
-
-            <!-- AUDIO -->
-
-            <div class="audioArea">
-
-                <audio
-                    id="audioPlayer"
-                    preload="auto"
-                    playsinline
-                ></audio>
-
-            </div>
-
-
-            <!-- JOIN NOTIFICATION -->
-
-            <div class="joinSection">
-
-                <div class="joinHeader">
-
-                    <div
-                        class="joinMessage"
-                        id="joinMessage"
-                    >
-                        No listeners yet.
-                    </div>
-
-                    <button
-                        class="expandBtn"
-                        id="expandBtn"
-                    >
-                        Expand
-                    </button>
-
-                </div>
-
-                <div
-                    class="joinList"
-                    id="joinList"
-                ></div>
-
-            </div>
-
-
-            <div class="footer">
-                Jesi Live Radio • Repeat All
-            </div>
+                Expand
+            </button>
 
         </div>
 
+        <div
+            class="joinList"
+            id="joinList"
+        ></div>
+
     </div>
+
+
+    <div class="footer">
+        Kuya J Live Radio
+    </div>
+
+</div>
+
+</div>
 
 </div>
 
@@ -672,29 +846,16 @@ body{
    PLAYLIST
 =====================================================
 
-   Put your MP3 files inside:
-
-   mp3/
-
-   Example:
-
-   mp3/song1.mp3
-   mp3/song2.mp3
-   mp3/song3.mp3
-
    IMPORTANT:
-   The order here is the order of the playlist.
+
+   Do NOT manually add songs here.
+
+   The system automatically loads every .mp3
+   file found inside the "mp3" folder.
+
 ===================================================== */
 
-const PLAYLIST = [
-
-    "mp3/song1.mp3",
-    "mp3/song2.mp3",
-    "mp3/song3.mp3",
-    "mp3/song4.mp3",
-    "mp3/song5.mp3"
-
-];
+let PLAYLIST = [];
 
 
 /* =====================================================
@@ -703,17 +864,6 @@ const PLAYLIST = [
 
 const START_HOUR = 6;
 const END_HOUR   = 22;
-
-
-/*
-   Manila time.
-
-   Browser users in the Philippines will normally
-   already have the correct local time.
-
-   We calculate using local browser time because
-   GitHub Pages has no server-side clock.
-*/
 
 
 /* =====================================================
@@ -762,6 +912,18 @@ const offlineBox =
 const audioPlayer =
     document.getElementById("audioPlayer");
 
+const equalizer =
+    document.getElementById("equalizer");
+
+const volumeSlider =
+    document.getElementById("volumeSlider");
+
+const volumeValue =
+    document.getElementById("volumeValue");
+
+const volumeIcon =
+    document.getElementById("volumeIcon");
+
 const joinMessage =
     document.getElementById("joinMessage");
 
@@ -770,6 +932,9 @@ const expandBtn =
 
 const joinList =
     document.getElementById("joinList");
+
+const unmuteBtn =
+    document.getElementById("unmuteBtn");
 
 
 /* =====================================================
@@ -784,10 +949,26 @@ let currentUser =
    JOINED LISTENERS
 ===================================================== */
 
-let listeners =
-    JSON.parse(
-        localStorage.getItem("jesiRadioListeners") || "[]"
-    );
+let listeners = [];
+
+try{
+
+    listeners =
+        JSON.parse(
+            localStorage.getItem(
+                "jesiRadioListeners"
+            ) || "[]"
+        );
+
+    if(!Array.isArray(listeners)){
+        listeners = [];
+    }
+
+}catch(e){
+
+    listeners = [];
+
+}
 
 
 /* =====================================================
@@ -798,6 +979,9 @@ let currentTrackIndex = -1;
 let currentTrackDuration = 0;
 let radioIsLive = false;
 let syncTimer = null;
+
+let playlistDurations = [];
+let playlistTotalDuration = 0;
 
 
 /* =====================================================
@@ -866,6 +1050,7 @@ function isListeningHours(){
         totalSeconds >= start &&
         totalSeconds < end
     );
+
 }
 
 
@@ -915,9 +1100,12 @@ function updateLiveStatus(){
 
         if(
             currentUser &&
-            audioPlayer.src
+            PLAYLIST.length &&
+            playlistTotalDuration
         ){
+
             syncRadio();
+
         }
 
     }else{
@@ -936,86 +1124,283 @@ function updateLiveStatus(){
 
         audioPlayer.pause();
 
+        updateEqualizer();
+
     }
 
 }
 
 
 /* =====================================================
-   GET PLAYLIST TOTAL DURATION
-=====================================================
-
-   Browser loads each MP3 temporarily to determine
-   duration.
-
+   VOLUME
 ===================================================== */
 
-async function getPlaylistDurations(){
+const savedVolume =
+    localStorage.getItem(
+        "jesiRadioVolume"
+    );
 
-    const durations = [];
+const parsedVolume =
+    Number(savedVolume);
 
-    for(let i = 0; i < PLAYLIST.length; i++){
+const initialVolume =
+    savedVolume !== null &&
+    Number.isFinite(parsedVolume)
+        ? Math.max(
+            0,
+            Math.min(
+                1,
+                parsedVolume
+            )
+        )
+        : 0.80;
 
-        const duration =
-            await getAudioDuration(
-                PLAYLIST[i]
-            );
+audioPlayer.volume =
+    initialVolume;
 
-        durations.push(duration);
+volumeSlider.value =
+    Math.round(
+        audioPlayer.volume * 100
+    );
+
+volumeValue.textContent =
+    Math.round(
+        audioPlayer.volume * 100
+    ) + "%";
+
+
+function updateVolumeUI(){
+
+    const value =
+        Math.round(
+            audioPlayer.volume * 100
+        );
+
+    volumeSlider.value =
+        value;
+
+    volumeValue.textContent =
+        value + "%";
+
+    if(value === 0){
+
+        volumeIcon.textContent =
+            "🔇";
+
+    }else if(value < 50){
+
+        volumeIcon.textContent =
+            "🔉";
+
+    }else{
+
+        volumeIcon.textContent =
+            "🔊";
 
     }
 
-    return durations;
 }
 
+
+volumeSlider.addEventListener(
+    "input",
+    () => {
+
+        const value =
+            Number(
+                volumeSlider.value
+            ) / 100;
+
+        audioPlayer.volume =
+            value;
+
+        localStorage.setItem(
+            "jesiRadioVolume",
+            String(value)
+        );
+
+        updateVolumeUI();
+
+    }
+);
+
+
+/* =====================================================
+   PLAY / UNMUTE
+===================================================== */
+
+function unmuteRadio(){
+
+    if(!radioIsLive){
+
+        alert(
+            "The radio is currently offline.\n\n" +
+            "Listening Hours: 6:00 AM – 10:00 PM"
+        );
+
+        return;
+
+    }
+
+    if(!PLAYLIST.length){
+
+        alert(
+            "No MP3 files were found in the mp3 folder."
+        );
+
+        return;
+
+    }
+
+    if(!playlistTotalDuration){
+
+        alert(
+            "The playlist is still loading. Please wait a moment."
+        );
+
+        return;
+
+    }
+
+    audioPlayer.muted = false;
+
+    if(audioPlayer.volume <= 0){
+
+        audioPlayer.volume = 0.80;
+
+        localStorage.setItem(
+            "jesiRadioVolume",
+            "0.80"
+        );
+
+        updateVolumeUI();
+
+    }
+
+    tryPlay();
+
+    updatePlayButton();
+
+}
+
+
+function updatePlayButton(){
+
+    if(
+        !audioPlayer.paused &&
+        !audioPlayer.muted
+    ){
+
+        unmuteBtn.textContent =
+            "🔊";
+
+        unmuteBtn.title =
+            "Playing";
+
+    }else{
+
+        unmuteBtn.textContent =
+            "▶️";
+
+        unmuteBtn.title =
+            "Play / Unmute";
+
+    }
+
+}
+
+
+/* =====================================================
+   EQUALIZER
+===================================================== */
+
+function updateEqualizer(){
+
+    if(
+        radioIsLive &&
+        !audioPlayer.paused &&
+        !audioPlayer.ended
+    ){
+
+        equalizer.classList.add(
+            "playing"
+        );
+
+    }else{
+
+        equalizer.classList.remove(
+            "playing"
+        );
+
+    }
+
+    updatePlayButton();
+
+}
+
+
+/* =====================================================
+   GET AUDIO DURATION
+===================================================== */
 
 function getAudioDuration(src){
 
     return new Promise(resolve => {
 
         const audio =
-            document.createElement("audio");
+            document.createElement(
+                "audio"
+            );
 
-        audio.preload = "metadata";
+        audio.preload =
+            "metadata";
 
-        audio.src = src;
+        audio.src =
+            src;
+
+        let finished = false;
+
+        function finish(value){
+
+            if(finished){
+                return;
+            }
+
+            finished = true;
+
+            resolve(
+                Number.isFinite(value)
+                    ? value
+                    : 0
+            );
+
+        }
 
         audio.addEventListener(
             "loadedmetadata",
             () => {
 
-                const d =
-                    Number(audio.duration);
-
-                resolve(
-                    Number.isFinite(d)
-                    ? d
-                    : 0
+                finish(
+                    Number(audio.duration)
                 );
 
-            }
+            },
+            {once:true}
         );
 
         audio.addEventListener(
             "error",
             () => {
 
-                resolve(0);
+                finish(0);
 
-            }
+            },
+            {once:true}
         );
 
     });
 
 }
-
-
-/* =====================================================
-   PLAYLIST CACHE
-===================================================== */
-
-let playlistDurations = [];
-let playlistTotalDuration = 0;
 
 
 /* =====================================================
@@ -1027,7 +1412,7 @@ async function preparePlaylist(){
     if(!PLAYLIST.length){
 
         songTitle.textContent =
-            "No MP3 files configured.";
+            "No MP3 files found.";
 
         return;
 
@@ -1036,8 +1421,82 @@ async function preparePlaylist(){
     songTitle.textContent =
         "Preparing playlist...";
 
+    playlistDurations = [];
+
+    for(
+        let i = 0;
+        i < PLAYLIST.length;
+        i++
+    ){
+
+        const duration =
+            await getAudioDuration(
+                PLAYLIST[i]
+            );
+
+        playlistDurations.push(
+            duration
+        );
+
+        /*
+           Show loading progress.
+        */
+
+        songTitle.textContent =
+            "Preparing playlist " +
+            (i + 1) +
+            " / " +
+            PLAYLIST.length;
+
+    }
+
+    playlistTotalDuration =
+        playlistDurations.reduce(
+            (a,b) =>
+                a + (
+                    Number.isFinite(b)
+                        ? b
+                        : 0
+                ),
+            0
+        );
+
+    /*
+       Remove files whose duration could
+       not be detected.
+    */
+
+    const validPlaylist = [];
+
+    const validDurations = [];
+
+    for(
+        let i = 0;
+        i < PLAYLIST.length;
+        i++
+    ){
+
+        if(
+            playlistDurations[i] > 0
+        ){
+
+            validPlaylist.push(
+                PLAYLIST[i]
+            );
+
+            validDurations.push(
+                playlistDurations[i]
+            );
+
+        }
+
+    }
+
+    PLAYLIST =
+        validPlaylist;
+
     playlistDurations =
-        await getPlaylistDurations();
+        validDurations;
 
     playlistTotalDuration =
         playlistDurations.reduce(
@@ -1051,11 +1510,21 @@ async function preparePlaylist(){
     ){
 
         songTitle.textContent =
-            "Unable to read MP3 duration.";
+            "No playable MP3 files found.";
 
         return;
 
     }
+
+    console.log(
+        "Total MP3 files:",
+        PLAYLIST.length
+    );
+
+    console.log(
+        "Total playlist duration:",
+        playlistTotalDuration
+    );
 
     syncRadio();
 
@@ -1064,19 +1533,6 @@ async function preparePlaylist(){
 
 /* =====================================================
    GET RADIO POSITION
-=====================================================
-
-   6:00 AM is the synchronization starting point.
-
-   The playlist repeats forever.
-
-   Example:
-
-   6:00 AM = beginning of Track 1
-
-   After the complete playlist duration,
-   it loops back to Track 1.
-
 ===================================================== */
 
 function getRadioPosition(){
@@ -1095,8 +1551,10 @@ function getRadioPosition(){
     );
 
     const elapsed =
-        (now.getTime() -
-         start.getTime()) / 1000;
+        (
+            now.getTime() -
+            start.getTime()
+        ) / 1000;
 
     if(elapsed < 0){
 
@@ -1132,7 +1590,8 @@ function getRadioPosition(){
 
         }
 
-        position -= duration;
+        position -=
+            duration;
 
     }
 
@@ -1151,7 +1610,9 @@ function getRadioPosition(){
 function getFileTitle(path){
 
     let name =
-        path.split("/").pop();
+        path
+        .split("/")
+        .pop();
 
     name =
         name.replace(
@@ -1184,6 +1645,10 @@ function syncRadio(){
         return;
     }
 
+    if(!PLAYLIST.length){
+        return;
+    }
+
     const position =
         getRadioPosition();
 
@@ -1195,6 +1660,10 @@ function syncRadio(){
 
     const src =
         PLAYLIST[index];
+
+    if(!src){
+        return;
+    }
 
     const sameTrack =
         currentTrackIndex === index;
@@ -1216,34 +1685,67 @@ function syncRadio(){
             getFileTitle(src);
 
         songNumber.textContent =
-            "Track " +
-            (index + 1) +
-            " of " +
-            PLAYLIST.length;
+            "";
 
-        audioPlayer.currentTime =
-            Math.min(
-                offset,
-                Math.max(
-                    0,
-                    (playlistDurations[index] || 1) - 0.2
-                )
+        /*
+           Wait until the new audio has
+           enough metadata before setting
+           currentTime.
+        */
+
+        const setPosition = () => {
+
+            try{
+
+                const safeDuration =
+                    Math.max(
+                        0,
+                        (
+                            playlistDurations[index] ||
+                            1
+                        ) - 0.2
+                    );
+
+                audioPlayer.currentTime =
+                    Math.min(
+                        offset,
+                        safeDuration
+                    );
+
+            }catch(e){}
+
+            tryPlay();
+
+        };
+
+        if(
+            audioPlayer.readyState >= 1
+        ){
+
+            setPosition();
+
+        }else{
+
+            audioPlayer.addEventListener(
+                "loadedmetadata",
+                setPosition,
+                {once:true}
             );
 
-        tryPlay();
+        }
 
     }else{
 
         const difference =
             Math.abs(
-                audioPlayer.currentTime -
-                offset
+                (
+                    audioPlayer.currentTime ||
+                    0
+                ) - offset
             );
 
         /*
-           Small difference = leave it alone.
-
-           Large difference = synchronize.
+           Only correct larger drift.
         */
 
         if(difference > 2){
@@ -1274,22 +1776,30 @@ function tryPlay(){
         return;
     }
 
+    if(!audioPlayer.src){
+        return;
+    }
+
+    audioPlayer.muted =
+        false;
+
     const promise =
         audioPlayer.play();
 
     if(
         promise &&
-        typeof promise.catch === "function"
+        typeof promise.catch ===
+        "function"
     ){
 
-        promise.catch(() => {
+        promise.catch(error => {
 
-            /*
-               Browser autoplay policy may block
-               audio. The JOIN button itself is a
-               user interaction, so normally this
-               will work after joining.
-            */
+            console.log(
+                "Autoplay/play blocked:",
+                error
+            );
+
+            updatePlayButton();
 
         });
 
@@ -1299,7 +1809,7 @@ function tryPlay(){
 
 
 /* =====================================================
-   AUDIO ENDED
+   AUDIO EVENTS
 ===================================================== */
 
 audioPlayer.addEventListener(
@@ -1307,13 +1817,41 @@ audioPlayer.addEventListener(
     () => {
 
         /*
-           Repeat All.
-           Move to next track.
+           If a track naturally ends,
+           immediately synchronize with
+           the time-based playlist.
         */
 
         currentTrackIndex = -1;
 
         syncRadio();
+
+        updateEqualizer();
+
+    }
+);
+
+audioPlayer.addEventListener(
+    "play",
+    updateEqualizer
+);
+
+audioPlayer.addEventListener(
+    "playing",
+    updateEqualizer
+);
+
+audioPlayer.addEventListener(
+    "pause",
+    updateEqualizer
+);
+
+audioPlayer.addEventListener(
+    "volumechange",
+    () => {
+
+        updateVolumeUI();
+        updatePlayButton();
 
     }
 );
@@ -1379,13 +1917,6 @@ function joinRadio(){
     }
 
 
-    /*
-       Local account for GitHub Pages.
-
-       Since GitHub Pages has no database,
-       this is a browser-local account/session.
-    */
-
     localStorage.setItem(
         "jesiRadioUser",
         name
@@ -1399,10 +1930,6 @@ function joinRadio(){
     currentUser =
         name;
 
-
-    /*
-       Add listener
-    */
 
     const now =
         new Date();
@@ -1422,10 +1949,6 @@ function joinRadio(){
 
     });
 
-    /*
-       Keep the list manageable.
-    */
-
     listeners =
         listeners.slice(
             0,
@@ -1434,7 +1957,9 @@ function joinRadio(){
 
     localStorage.setItem(
         "jesiRadioListeners",
-        JSON.stringify(listeners)
+        JSON.stringify(
+            listeners
+        )
     );
 
 
@@ -1449,7 +1974,11 @@ function joinRadio(){
 
     updateClock();
 
-    preparePlaylist();
+    /*
+       Load ALL MP3 files automatically.
+    */
+
+    loadMP3Playlist();
 
 }
 
@@ -1465,19 +1994,18 @@ function renderListeners(){
         joinMessage.textContent =
             "No listeners yet.";
 
-        joinList.innerHTML = "";
+        joinList.innerHTML =
+            "";
 
         return;
 
     }
-
 
     const latest =
         listeners[0];
 
     joinMessage.innerHTML =
         `<strong>${escapeHTML(latest.name)}</strong> Joined the stream`;
-
 
     joinList.innerHTML =
         listeners
@@ -1490,6 +2018,7 @@ function renderListeners(){
 
             return `
                 <div class="joinItem">
+
                     <div class="joinName">
                         ${escapeHTML(item.name)}
                     </div>
@@ -1497,6 +2026,7 @@ function renderListeners(){
                     <div class="joinTime">
                         ${formatTime(date)}
                     </div>
+
                 </div>
             `;
 
@@ -1513,11 +2043,26 @@ function renderListeners(){
 function escapeHTML(value){
 
     return String(value)
-        .replace(/&/g,"&amp;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;")
-        .replace(/"/g,"&quot;")
-        .replace(/'/g,"&#039;");
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+        .replace(
+            /</g,
+            "&lt;"
+        )
+        .replace(
+            />/g,
+            "&gt;"
+        )
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+        .replace(
+            /'/g,
+            "&#039;"
+        );
 
 }
 
@@ -1537,8 +2082,8 @@ expandBtn.addEventListener(
 
         expandBtn.textContent =
             open
-            ? "Collapse"
-            : "Expand";
+                ? "Collapse"
+                : "Expand";
 
     }
 );
@@ -1558,7 +2103,10 @@ joinBtn.addEventListener(
    ENTER KEY
 ===================================================== */
 
-[nameInput,passwordInput]
+[
+    nameInput,
+    passwordInput
+]
 .forEach(input => {
 
     input.addEventListener(
@@ -1598,7 +2146,366 @@ function checkExistingSession(){
 
         renderListeners();
 
-        preparePlaylist();
+        loadMP3Playlist();
+
+    }
+
+}
+
+
+/* =====================================================
+   AUTOMATIC MP3 LOADER
+=====================================================
+
+   GitHub Pages:
+
+   Reads all files from:
+
+   /mp3/
+
+   using the GitHub Contents API.
+
+===================================================== */
+
+async function loadMP3Playlist(){
+
+    try{
+
+        songTitle.textContent =
+            "Loading MP3 playlist...";
+
+
+        const host =
+            location.hostname;
+
+        const pathParts =
+            location.pathname
+            .split("/")
+            .filter(Boolean);
+
+
+        /*
+           GitHub Pages detection
+        */
+
+        if(
+            host.endsWith(
+                ".github.io"
+            )
+        ){
+
+            const username =
+                host.replace(
+                    ".github.io",
+                    ""
+                );
+
+            let repo =
+                pathParts[0];
+
+
+            /*
+               User/organization pages:
+
+               username.github.io
+
+               Project pages:
+
+               username.github.io/repository/
+            */
+
+            if(!repo){
+
+                repo =
+                    username +
+                    ".github.io";
+
+            }
+
+
+            const apiURL =
+                `https://api.github.com/repos/${encodeURIComponent(username)}/${encodeURIComponent(repo)}/contents/mp3`;
+
+
+            console.log(
+                "Reading MP3 folder:",
+                apiURL
+            );
+
+
+            const response =
+                await fetch(
+                    apiURL,
+                    {
+                        cache:"no-store"
+                    }
+                );
+
+
+            if(!response.ok){
+
+                throw new Error(
+                    "GitHub MP3 folder could not be read. HTTP " +
+                    response.status
+                );
+
+            }
+
+
+            const files =
+                await response.json();
+
+
+            if(
+                !Array.isArray(files)
+            ){
+
+                throw new Error(
+                    "Invalid GitHub folder response."
+                );
+
+            }
+
+
+            PLAYLIST =
+                files
+                .filter(file =>
+                    file &&
+                    file.type === "file" &&
+                    /\.mp3$/i.test(
+                        file.name || ""
+                    )
+                )
+                .sort(
+                    (a,b) =>
+                        a.name.localeCompare(
+                            b.name,
+                            undefined,
+                            {
+                                numeric:true,
+                                sensitivity:"base"
+                            }
+                        )
+                )
+                .map(
+                    file =>
+                        "mp3/" +
+                        encodeURIComponent(
+                            file.name
+                        )
+                );
+
+
+            /*
+               Decode URL path for display,
+               but keep safe URL encoding.
+            */
+
+            console.log(
+                "MP3 files found:",
+                PLAYLIST
+            );
+
+
+            if(!PLAYLIST.length){
+
+                songTitle.textContent =
+                    "No MP3 files found in mp3 folder.";
+
+                return;
+
+            }
+
+
+            await preparePlaylist();
+
+            return;
+
+        }
+
+
+        /*
+           Fallback for a normal server.
+        */
+
+        await loadMP3FromFolder();
+
+    }catch(error){
+
+        console.error(
+            "MP3 auto-load error:",
+            error
+        );
+
+        /*
+           Try normal folder scanning
+           if GitHub API fails.
+        */
+
+        try{
+
+            await loadMP3FromFolder();
+
+        }catch(e){
+
+            console.error(
+                "Fallback failed:",
+                e
+            );
+
+            songTitle.textContent =
+                "Unable to load MP3 playlist.";
+
+        }
+
+    }
+
+}
+
+
+/* =====================================================
+   NORMAL SERVER FOLDER FALLBACK
+===================================================== */
+
+async function loadMP3FromFolder(){
+
+    try{
+
+        const response =
+            await fetch(
+                "mp3/",
+                {
+                    cache:"no-store"
+                }
+            );
+
+
+        if(!response.ok){
+
+            throw new Error(
+                "Cannot read mp3 folder."
+            );
+
+        }
+
+
+        const html =
+            await response.text();
+
+
+        const parser =
+            new DOMParser();
+
+
+        const doc =
+            parser.parseFromString(
+                html,
+                "text/html"
+            );
+
+
+        const links =
+            [
+                ...doc.querySelectorAll(
+                    "a"
+                )
+            ];
+
+
+        PLAYLIST =
+            links
+            .map(
+                a =>
+                    a.getAttribute(
+                        "href"
+                    )
+            )
+            .filter(
+                href =>
+                    href &&
+                    /\.mp3$/i.test(
+                        href
+                    )
+            )
+            .map(
+                href => {
+
+                    if(
+                        href.startsWith(
+                            "http://"
+                        ) ||
+                        href.startsWith(
+                            "https://"
+                        )
+                    ){
+
+                        return href;
+
+                    }
+
+                    const filename =
+                        decodeURIComponent(
+                            href
+                            .split("/")
+                            .pop()
+                        );
+
+                    return (
+                        "mp3/" +
+                        encodeURIComponent(
+                            filename
+                        )
+                    );
+
+                }
+            );
+
+
+        PLAYLIST =
+            [
+                ...new Set(
+                    PLAYLIST
+                )
+            ]
+            .sort(
+                (a,b) =>
+                    a.localeCompare(
+                        b,
+                        undefined,
+                        {
+                            numeric:true,
+                            sensitivity:"base"
+                        }
+                    )
+            );
+
+
+        console.log(
+            "MP3 files found:",
+            PLAYLIST
+        );
+
+
+        if(!PLAYLIST.length){
+
+            songTitle.textContent =
+                "No MP3 files found.";
+
+            return;
+
+        }
+
+
+        await preparePlaylist();
+
+    }catch(error){
+
+        console.error(
+            "Folder scan failed:",
+            error
+        );
+
+        throw error;
 
     }
 
@@ -1617,11 +2524,6 @@ setInterval(
 
 /* =====================================================
    RADIO SYNCHRONIZATION
-=====================================================
-
-   Every 1 second we compare the browser audio
-   position against the time-based playlist position.
-
 ===================================================== */
 
 syncTimer =
@@ -1647,9 +2549,19 @@ syncTimer =
    INITIALIZATION
 ===================================================== */
 
+updateVolumeUI();
+
+updateEqualizer();
+
 updateClock();
 
 checkExistingSession();
+
+
+/*
+   Do not load MP3s immediately on the login page.
+   loadMP3Playlist() is called after login/session.
+*/
 
 
 </script>

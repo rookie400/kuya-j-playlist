@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -844,15 +845,6 @@ body{
 
 /* =====================================================
    PLAYLIST
-=====================================================
-
-   IMPORTANT:
-
-   Do NOT manually add songs here.
-
-   The system automatically loads every .mp3
-   file found inside the "mp3" folder.
-
 ===================================================== */
 
 let PLAYLIST = [];
@@ -978,7 +970,6 @@ try{
 let currentTrackIndex = -1;
 let currentTrackDuration = 0;
 let radioIsLive = false;
-let syncTimer = null;
 
 let playlistDurations = [];
 let playlistTotalDuration = 0;
@@ -1438,10 +1429,6 @@ async function preparePlaylist(){
             duration
         );
 
-        /*
-           Show loading progress.
-        */
-
         songTitle.textContent =
             "Preparing playlist " +
             (i + 1) +
@@ -1461,13 +1448,7 @@ async function preparePlaylist(){
             0
         );
 
-    /*
-       Remove files whose duration could
-       not be detected.
-    */
-
     const validPlaylist = [];
-
     const validDurations = [];
 
     for(
@@ -1614,17 +1595,62 @@ function getFileTitle(path){
         .split("/")
         .pop();
 
+    /*
+       Decode URL encoded filename.
+
+       Example:
+       Basang%20basa%20sa%20ulan.mp3
+
+       becomes:
+
+       Basang basa sa ulan.mp3
+    */
+
+    try{
+
+        name =
+            decodeURIComponent(name);
+
+    }catch(e){
+
+        console.log(
+            "Filename decode error:",
+            e
+        );
+
+    }
+
+    /*
+       Remove MP3 extension.
+    */
+
     name =
         name.replace(
-            /\.(mp3|MP3)$/,
+            /\.mp3$/i,
             ""
         );
+
+    /*
+       Replace underscores and dashes
+       with normal spaces.
+    */
 
     name =
         name.replace(
             /[_-]+/g,
             " "
         );
+
+    /*
+       Clean repeated spaces.
+    */
+
+    name =
+        name.replace(
+            /\s+/g,
+            " "
+        )
+        .trim();
 
     return name;
 
@@ -1687,12 +1713,6 @@ function syncRadio(){
         songNumber.textContent =
             "";
 
-        /*
-           Wait until the new audio has
-           enough metadata before setting
-           currentTime.
-        */
-
         const setPosition = () => {
 
             try{
@@ -1743,10 +1763,6 @@ function syncRadio(){
                     0
                 ) - offset
             );
-
-        /*
-           Only correct larger drift.
-        */
 
         if(difference > 2){
 
@@ -1815,12 +1831,6 @@ function tryPlay(){
 audioPlayer.addEventListener(
     "ended",
     () => {
-
-        /*
-           If a track naturally ends,
-           immediately synchronize with
-           the time-based playlist.
-        */
 
         currentTrackIndex = -1;
 
@@ -1916,7 +1926,6 @@ function joinRadio(){
 
     }
 
-
     localStorage.setItem(
         "jesiRadioUser",
         name
@@ -1929,7 +1938,6 @@ function joinRadio(){
 
     currentUser =
         name;
-
 
     const now =
         new Date();
@@ -1962,21 +1970,15 @@ function joinRadio(){
         )
     );
 
-
     loginPage.style.display =
         "none";
 
     radioPage.style.display =
         "block";
 
-
     renderListeners();
 
     updateClock();
-
-    /*
-       Load ALL MP3 files automatically.
-    */
 
     loadMP3Playlist();
 
@@ -2155,16 +2157,6 @@ function checkExistingSession(){
 
 /* =====================================================
    AUTOMATIC MP3 LOADER
-=====================================================
-
-   GitHub Pages:
-
-   Reads all files from:
-
-   /mp3/
-
-   using the GitHub Contents API.
-
 ===================================================== */
 
 async function loadMP3Playlist(){
@@ -2174,7 +2166,6 @@ async function loadMP3Playlist(){
         songTitle.textContent =
             "Loading MP3 playlist...";
 
-
         const host =
             location.hostname;
 
@@ -2182,7 +2173,6 @@ async function loadMP3Playlist(){
             location.pathname
             .split("/")
             .filter(Boolean);
-
 
         /*
            GitHub Pages detection
@@ -2203,17 +2193,6 @@ async function loadMP3Playlist(){
             let repo =
                 pathParts[0];
 
-
-            /*
-               User/organization pages:
-
-               username.github.io
-
-               Project pages:
-
-               username.github.io/repository/
-            */
-
             if(!repo){
 
                 repo =
@@ -2222,16 +2201,13 @@ async function loadMP3Playlist(){
 
             }
 
-
             const apiURL =
                 `https://api.github.com/repos/${encodeURIComponent(username)}/${encodeURIComponent(repo)}/contents/mp3`;
-
 
             console.log(
                 "Reading MP3 folder:",
                 apiURL
             );
-
 
             const response =
                 await fetch(
@@ -2240,7 +2216,6 @@ async function loadMP3Playlist(){
                         cache:"no-store"
                     }
                 );
-
 
             if(!response.ok){
 
@@ -2251,10 +2226,8 @@ async function loadMP3Playlist(){
 
             }
 
-
             const files =
                 await response.json();
-
 
             if(
                 !Array.isArray(files)
@@ -2266,6 +2239,12 @@ async function loadMP3Playlist(){
 
             }
 
+            /*
+               Use GitHub download_url.
+
+               This is more reliable than building
+               the relative MP3 URL ourselves.
+            */
 
             PLAYLIST =
                 files
@@ -2289,23 +2268,19 @@ async function loadMP3Playlist(){
                 )
                 .map(
                     file =>
-                        "mp3/" +
-                        encodeURIComponent(
-                            file.name
+                        file.download_url ||
+                        (
+                            "mp3/" +
+                            encodeURIComponent(
+                                file.name
+                            )
                         )
                 );
-
-
-            /*
-               Decode URL path for display,
-               but keep safe URL encoding.
-            */
 
             console.log(
                 "MP3 files found:",
                 PLAYLIST
             );
-
 
             if(!PLAYLIST.length){
 
@@ -2316,7 +2291,6 @@ async function loadMP3Playlist(){
 
             }
 
-
             await preparePlaylist();
 
             return;
@@ -2325,7 +2299,7 @@ async function loadMP3Playlist(){
 
 
         /*
-           Fallback for a normal server.
+           Normal server fallback.
         */
 
         await loadMP3FromFolder();
@@ -2336,11 +2310,6 @@ async function loadMP3Playlist(){
             "MP3 auto-load error:",
             error
         );
-
-        /*
-           Try normal folder scanning
-           if GitHub API fails.
-        */
 
         try{
 
@@ -2379,7 +2348,6 @@ async function loadMP3FromFolder(){
                 }
             );
 
-
         if(!response.ok){
 
             throw new Error(
@@ -2388,14 +2356,11 @@ async function loadMP3FromFolder(){
 
         }
 
-
         const html =
             await response.text();
 
-
         const parser =
             new DOMParser();
-
 
         const doc =
             parser.parseFromString(
@@ -2403,14 +2368,12 @@ async function loadMP3FromFolder(){
                 "text/html"
             );
 
-
         const links =
             [
                 ...doc.querySelectorAll(
                     "a"
                 )
             ];
-
 
         PLAYLIST =
             links
@@ -2460,7 +2423,6 @@ async function loadMP3FromFolder(){
                 }
             );
 
-
         PLAYLIST =
             [
                 ...new Set(
@@ -2479,12 +2441,10 @@ async function loadMP3FromFolder(){
                     )
             );
 
-
         console.log(
             "MP3 files found:",
             PLAYLIST
         );
-
 
         if(!PLAYLIST.length){
 
@@ -2494,7 +2454,6 @@ async function loadMP3FromFolder(){
             return;
 
         }
-
 
         await preparePlaylist();
 
@@ -2526,23 +2485,22 @@ setInterval(
    RADIO SYNCHRONIZATION
 ===================================================== */
 
-syncTimer =
-    setInterval(
-        () => {
+setInterval(
+    () => {
 
-            if(
-                currentUser &&
-                radioIsLive &&
-                playlistTotalDuration
-            ){
+        if(
+            currentUser &&
+            radioIsLive &&
+            playlistTotalDuration
+        ){
 
-                syncRadio();
+            syncRadio();
 
-            }
+        }
 
-        },
-        1000
-    );
+    },
+    1000
+);
 
 
 /* =====================================================
@@ -2557,14 +2515,10 @@ updateClock();
 
 checkExistingSession();
 
-
-/*
-   Do not load MP3s immediately on the login page.
-   loadMP3Playlist() is called after login/session.
-*/
-
-
 </script>
 
 </body>
 </html>
+```
+
+Ang importanteng pagbabago ay nasa **`getFileTitle()`** at sa GitHub playlist loader. Ngayon ang mga filename gaya ng `Basang%20basa%20sa%20ulan.mp3` ay ipapakita bilang **Basang basa sa ulan**.

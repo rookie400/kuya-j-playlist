@@ -28,116 +28,8 @@ body{
     justify-content:center;
 }
 
-.screen{
-    width:100%;
-    height:100%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-}
-
 .hidden{
     display:none !important;
-}
-
-/* =========================
-   LOGIN
-========================= */
-
-.login-screen{
-    width:100%;
-    height:100%;
-    background:
-        radial-gradient(circle at center,#123d2b 0%,#07150f 35%,#050505 75%);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-}
-
-.login-box{
-    width:min(460px,90%);
-    padding:40px 32px;
-    border:1px solid rgba(0,255,136,.3);
-    border-radius:25px;
-    background:rgba(5,10,8,.92);
-    box-shadow:0 0 50px rgba(0,255,136,.12);
-    text-align:center;
-}
-
-.logo{
-    font-size:42px;
-    font-weight:900;
-    color:#00ff88;
-    letter-spacing:2px;
-    text-shadow:0 0 20px rgba(0,255,136,.5);
-}
-
-.subtitle{
-    margin-top:8px;
-    color:#aaa;
-    font-size:14px;
-}
-
-.login-field{
-    margin-top:30px;
-    text-align:left;
-}
-
-.login-field label{
-    display:block;
-    color:#aaa;
-    font-size:13px;
-    margin-bottom:8px;
-}
-
-.login-field input{
-    width:100%;
-    padding:15px;
-    border:1px solid #333;
-    border-radius:12px;
-    background:#101010;
-    color:#fff;
-    outline:none;
-    font-size:16px;
-}
-
-.login-field input:focus{
-    border-color:#00ff88;
-    box-shadow:0 0 15px rgba(0,255,136,.15);
-}
-
-.join-btn{
-    width:100%;
-    margin-top:20px;
-    padding:16px;
-    border:0;
-    border-radius:12px;
-    background:#00ff88;
-    color:#00150b;
-    font-size:16px;
-    font-weight:900;
-    cursor:pointer;
-    transition:.2s;
-}
-
-.join-btn:hover{
-    transform:translateY(-1px);
-    box-shadow:0 0 25px rgba(0,255,136,.35);
-}
-
-.login-info{
-    margin-top:25px;
-    padding:15px;
-    border-radius:12px;
-    background:#0d0d0d;
-    border:1px solid #222;
-    font-size:13px;
-    color:#aaa;
-    line-height:1.7;
-}
-
-.login-info strong{
-    color:#00ff88;
 }
 
 /* =========================
@@ -209,8 +101,13 @@ body{
 }
 
 @keyframes pulse{
-    0%,100%{opacity:1}
-    50%{opacity:.35}
+    0%,100%{
+        opacity:1;
+    }
+
+    50%{
+        opacity:.35;
+    }
 }
 
 .main-grid{
@@ -294,20 +191,54 @@ body{
     animation-play-state:running;
 }
 
-.bar:nth-child(1){animation-delay:.05s}
-.bar:nth-child(2){animation-delay:.15s}
-.bar:nth-child(3){animation-delay:.25s}
-.bar:nth-child(4){animation-delay:.35s}
-.bar:nth-child(5){animation-delay:.45s}
-.bar:nth-child(6){animation-delay:.55s}
-.bar:nth-child(7){animation-delay:.65s}
-.bar:nth-child(8){animation-delay:.75s}
-.bar:nth-child(9){animation-delay:.85s}
-.bar:nth-child(10){animation-delay:.95s}
+.bar:nth-child(1){
+    animation-delay:.05s;
+}
+
+.bar:nth-child(2){
+    animation-delay:.15s;
+}
+
+.bar:nth-child(3){
+    animation-delay:.25s;
+}
+
+.bar:nth-child(4){
+    animation-delay:.35s;
+}
+
+.bar:nth-child(5){
+    animation-delay:.45s;
+}
+
+.bar:nth-child(6){
+    animation-delay:.55s;
+}
+
+.bar:nth-child(7){
+    animation-delay:.65s;
+}
+
+.bar:nth-child(8){
+    animation-delay:.75s;
+}
+
+.bar:nth-child(9){
+    animation-delay:.85s;
+}
+
+.bar:nth-child(10){
+    animation-delay:.95s;
+}
 
 @keyframes eq{
-    0%,100%{height:15px}
-    50%{height:90px}
+    0%,100%{
+        height:15px;
+    }
+
+    50%{
+        height:90px;
+    }
 }
 
 .control-area{
@@ -356,7 +287,7 @@ body{
 }
 
 /* =========================
-   INFO CARDS
+   INFO
 ========================= */
 
 .info-card{
@@ -429,6 +360,10 @@ body{
     padding-top:10px;
 }
 
+/* =========================
+   OFFLINE
+========================= */
+
 .offline-card{
     display:none;
     text-align:center;
@@ -472,6 +407,7 @@ body{
 ========================= */
 
 @media(max-width:800px){
+
     .radio-screen{
         padding:12px;
     }
@@ -505,6 +441,7 @@ body{
 }
 
 @media(max-width:550px){
+
     .right-panel{
         display:flex;
     }
@@ -516,10 +453,6 @@ body{
     .clock{
         font-size:23px;
     }
-
-    .login-box{
-        padding:30px 22px;
-    }
 }
 </style>
 
@@ -527,56 +460,25 @@ body{
 
 <body>
 
-<!-- =========================
-     LOGIN SCREEN
-========================= -->
-
-<div id="loginScreen" class="screen login-screen">
-
-```
-<div class="login-box">
-
-    <div class="logo">JESI LIVE RADIO</div>
-    <div class="subtitle">LIVE ONLINE RADIO</div>
-
-    <div class="login-field">
-        <label>Your Name</label>
-        <input id="nameInput" type="text" placeholder="Enter your name" autocomplete="off">
-    </div>
-
-    <div class="login-field">
-        <label>Password</label>
-        <input id="passwordInput" type="password" placeholder="Enter password">
-    </div>
-
-    <button class="join-btn" onclick="joinRadio()">JOIN THE STREAM</button>
-
-    <div class="login-info">
-        <div>Listening Hours</div>
-        <strong>6:00 AM – 11:00 PM</strong>
-    </div>
-
-</div>
-```
-
-</div>
-
-<!-- =========================
-     RADIO SCREEN
-========================= -->
-
-<div id="radioScreen" class="screen radio-screen hidden">
+<div id="radioScreen" class="radio-screen">
 
 ```
 <div class="radio-container">
 
     <div class="topbar">
 
-        <div class="station-name">JESI LIVE RADIO</div>
+        <div class="station-name">
+            JESI LIVE RADIO
+        </div>
 
         <div id="liveBadge" class="live-badge">
+
             <span class="live-dot"></span>
-            <span id="liveText">OFFLINE</span>
+
+            <span id="liveText">
+                OFFLINE
+            </span>
+
         </div>
 
     </div>
@@ -588,15 +490,18 @@ body{
 
             <div class="card now-playing">
 
-                <div class="now-label">NOW PLAYING</div>
+                <div class="now-label">
+                    NOW PLAYING
+                </div>
 
                 <div id="songTitle" class="song-title">
-                    Loading...
+                    Connecting...
                 </div>
 
                 <div id="songStatus" class="song-status">
-                    Preparing stream...
+                    Synchronizing radio...
                 </div>
+
 
                 <div id="equalizer" class="equalizer">
 
@@ -616,23 +521,29 @@ body{
 
                 <div class="control-area">
 
-                    <button id="playButton"
-                            class="play-btn"
-                            onclick="toggleRadio()">
+                    <button
+                        id="playButton"
+                        class="play-btn"
+                        onclick="toggleRadio()">
                         ▶
                     </button>
 
+
                     <div class="volume-area">
 
-                        <label>VOLUME</label>
+                        <label>
+                            VOLUME
+                        </label>
 
-                        <input id="volumeControl"
-                               type="range"
-                               min="0"
-                               max="1"
-                               step="0.01"
-                               value="1"
-                               oninput="changeVolume(this.value)">
+                        <input
+                            id="volumeControl"
+                            type="range"
+                            min="0"
+                            max="1"
+                            step="0.01"
+                            value="1"
+                            oninput="changeVolume(this.value)"
+                        >
 
                     </div>
 
@@ -643,14 +554,17 @@ body{
 
             <div id="offlineCard" class="card offline-card">
 
-                <div class="offline-icon">📻</div>
+                <div class="offline-icon">
+                    📻
+                </div>
 
                 <div class="offline-title">
                     RADIO OFFLINE
                 </div>
 
                 <div class="offline-text">
-                    Listening hours are from 6:00 AM to 11:00 PM.
+                    Listening hours are from
+                    6:00 AM to 11:00 PM.
                 </div>
 
             </div>
@@ -671,7 +585,7 @@ body{
                 </div>
 
                 <div id="date" class="date">
-                    Please wait...
+                    Connecting...
                 </div>
 
             </div>
@@ -706,13 +620,15 @@ body{
             <div class="card listeners">
 
                 <div class="info-title">
-                    JOINED LISTENERS
+                    LISTENERS
                 </div>
 
                 <div id="listenerList" class="listener-list">
+
                     <div class="empty-listeners">
                         No listeners yet.
                     </div>
+
                 </div>
 
             </div>
@@ -741,8 +657,6 @@ body{
 const START_HOUR = 6;
 const END_HOUR = 23;
 
-const PASSWORD = "radio";
-
 const PLAYLIST_URL = "playlist.json";
 
 const AUDIO_FOLDER = "mp3/";
@@ -766,8 +680,6 @@ let currentSongIndex = -1;
 let radioStarted = false;
 let isPlaying = false;
 
-let listenerName = "";
-
 let listeningStartTime = null;
 
 let lastPositionSync = 0;
@@ -776,18 +688,6 @@ let lastPositionSync = 0;
 /* =====================================================
    ELEMENTS
 ===================================================== */
-
-const loginScreen =
-    document.getElementById("loginScreen");
-
-const radioScreen =
-    document.getElementById("radioScreen");
-
-const nameInput =
-    document.getElementById("nameInput");
-
-const passwordInput =
-    document.getElementById("passwordInput");
 
 const radioAudio =
     document.getElementById("radioAudio");
@@ -855,28 +755,42 @@ async function syncInternetTime(){
 
     try{
 
-        const requestStart = Date.now();
+        const requestStart =
+            Date.now();
 
-        const response = await fetch(
-            TIME_API_URL + "&_=" + Date.now(),
-            {
-                cache:"no-store"
-            }
-        );
+        const response =
+            await fetch(
+                TIME_API_URL +
+                "&_=" +
+                Date.now(),
+                {
+                    cache:"no-store"
+                }
+            );
 
         if(!response.ok){
-            throw new Error("Time server error");
+            throw new Error(
+                "Time server error"
+            );
         }
 
-        const data = await response.json();
+        const data =
+            await response.json();
 
-        const requestEnd = Date.now();
+        const requestEnd =
+            Date.now();
 
         const serverDate =
             new Date(data.dateTime);
 
-        if(isNaN(serverDate.getTime())){
-            throw new Error("Invalid server time");
+        if(
+            isNaN(
+                serverDate.getTime()
+            )
+        ){
+            throw new Error(
+                "Invalid server time"
+            );
         }
 
         const networkDelay =
@@ -884,13 +798,15 @@ async function syncInternetTime(){
 
         internetTime =
             new Date(
-                serverDate.getTime() + networkDelay
+                serverDate.getTime() +
+                networkDelay
             );
 
         internetTimeReceivedAt =
             Date.now();
 
-        internetTimeReady = true;
+        internetTimeReady =
+            true;
 
         internetStatus.textContent =
             "Internet Time Connected";
@@ -901,7 +817,8 @@ async function syncInternetTime(){
 
     }catch(error){
 
-        internetTimeReady = false;
+        internetTimeReady =
+            false;
 
         internetStatus.textContent =
             "Internet Time Unavailable";
@@ -918,7 +835,7 @@ async function syncInternetTime(){
 
 
 /* =====================================================
-   PHILIPPINES TIME
+   MANILA TIME
 ===================================================== */
 
 function getManilaParts(dateObject){
@@ -943,13 +860,18 @@ function getManilaParts(dateObject){
         );
 
     const parts =
-        formatter.formatToParts(dateObject);
+        formatter.formatToParts(
+            dateObject
+        );
 
     const result = {};
 
     parts.forEach(part => {
 
-        if(part.type !== "literal"){
+        if(
+            part.type !== "literal"
+        ){
+
             result[part.type] =
                 Number(part.value);
         }
@@ -1053,30 +975,41 @@ async function loadPlaylist(){
 
         const response =
             await fetch(
-                PLAYLIST_URL + "?t=" + Date.now(),
+                PLAYLIST_URL +
+                "?t=" +
+                Date.now(),
                 {
                     cache:"no-store"
                 }
             );
 
         if(!response.ok){
-            throw new Error("Playlist not found");
+
+            throw new Error(
+                "Playlist not found"
+            );
         }
 
         const data =
             await response.json();
 
         if(!Array.isArray(data)){
-            throw new Error("Invalid playlist");
+
+            throw new Error(
+                "Invalid playlist"
+            );
         }
 
         playlist =
             data.map(item => {
 
                 if(typeof item === "string"){
+
                     return {
                         title:item,
-                        src:AUDIO_FOLDER + item
+                        src:
+                            AUDIO_FOLDER +
+                            item
                     };
                 }
 
@@ -1099,7 +1032,9 @@ async function loadPlaylist(){
                         ),
 
                     duration:
-                        Number(item.duration) || 0
+                        Number(
+                            item.duration
+                        ) || 0
                 };
 
             });
@@ -1131,32 +1066,44 @@ async function loadPlaylist(){
 
 async function getSongDuration(song){
 
-    if(song.duration && song.duration > 0){
+    if(
+        song.duration &&
+        song.duration > 0
+    ){
+
         return song.duration;
     }
 
     return new Promise(resolve => {
 
         const temp =
-            document.createElement("audio");
+            document.createElement(
+                "audio"
+            );
 
-        temp.preload = "metadata";
+        temp.preload =
+            "metadata";
 
-        temp.src = song.src;
+        temp.src =
+            song.src;
 
         temp.addEventListener(
             "loadedmetadata",
             () => {
 
                 const duration =
-                    Number(temp.duration);
+                    Number(
+                        temp.duration
+                    );
 
                 song.duration =
                     isFinite(duration)
                     ? duration
                     : 0;
 
-                resolve(song.duration);
+                resolve(
+                    song.duration
+                );
 
             },
             {
@@ -1168,7 +1115,8 @@ async function getSongDuration(song){
             "error",
             () => {
 
-                song.duration = 0;
+                song.duration =
+                    0;
 
                 resolve(0);
 
@@ -1194,10 +1142,14 @@ async function getTotalPlaylistDuration(){
 
     let total = 0;
 
-    for(const song of playlist){
+    for(
+        const song of playlist
+    ){
 
         const duration =
-            await getSongDuration(song);
+            await getSongDuration(
+                song
+            );
 
         total += duration;
     }
@@ -1215,7 +1167,11 @@ async function getRadioPosition(){
     const now =
         getInternetNow();
 
-    if(!now || !playlist.length){
+    if(
+        !now ||
+        !playlist.length
+    ){
+
         return null;
     }
 
@@ -1230,13 +1186,17 @@ async function getRadioPosition(){
         parts.hour * 3600 +
         parts.minute * 60 +
         parts.second +
-        (now.getMilliseconds() / 1000);
+        (
+            now.getMilliseconds() /
+            1000
+        );
 
     const startSeconds =
         START_HOUR * 3600;
 
     let elapsed =
-        currentSeconds - startSeconds;
+        currentSeconds -
+        startSeconds;
 
     if(elapsed < 0){
         return null;
@@ -1254,20 +1214,26 @@ async function getRadioPosition(){
 
     let accumulated = 0;
 
-    for(let i = 0; i < playlist.length; i++){
+    for(
+        let i = 0;
+        i < playlist.length;
+        i++
+    ){
 
         const duration =
             playlist[i].duration || 0;
 
         if(
             elapsed >= accumulated &&
-            elapsed < accumulated + duration
+            elapsed <
+                accumulated + duration
         ){
 
             return {
                 index:i,
                 position:
-                    elapsed - accumulated
+                    elapsed -
+                    accumulated
             };
         }
 
@@ -1295,6 +1261,7 @@ async function loadSong(
         index < 0 ||
         index >= playlist.length
     ){
+
         return;
     }
 
@@ -1319,7 +1286,9 @@ async function loadSong(
 
         await new Promise(resolve => {
 
-            if(radioAudio.readyState >= 1){
+            if(
+                radioAudio.readyState >= 1
+            ){
 
                 resolve();
 
@@ -1333,33 +1302,41 @@ async function loadSong(
             radioAudio.addEventListener(
                 "loadedmetadata",
                 done,
-                {once:true}
+                {
+                    once:true
+                }
             );
 
             radioAudio.addEventListener(
                 "error",
                 done,
-                {once:true}
+                {
+                    once:true
+                }
             );
 
         });
 
         if(
             position > 0 &&
-            isFinite(radioAudio.duration)
+            isFinite(
+                radioAudio.duration
+            )
         ){
 
             try{
+
                 radioAudio.currentTime =
                     Math.min(
                         position,
                         Math.max(
                             0,
-                            radioAudio.duration - 0.2
+                            radioAudio.duration -
+                            0.2
                         )
                     );
-            }catch(e){}
 
+            }catch(e){}
         }
 
         songStatus.textContent =
@@ -1371,7 +1348,8 @@ async function loadSong(
 
                 await radioAudio.play();
 
-                isPlaying = true;
+                isPlaying =
+                    true;
 
                 updatePlayButton();
 
@@ -1381,7 +1359,8 @@ async function loadSong(
 
             }catch(error){
 
-                isPlaying = false;
+                isPlaying =
+                    false;
 
                 updatePlayButton();
 
@@ -1392,7 +1371,6 @@ async function loadSong(
                 songStatus.textContent =
                     "Press play to start";
             }
-
         }
 
     }catch(error){
@@ -1415,11 +1393,13 @@ async function syncRadio(){
 
     if(!isListeningHours()){
 
-        radioStarted = false;
+        radioStarted =
+            false;
 
         radioAudio.pause();
 
-        isPlaying = false;
+        isPlaying =
+            false;
 
         updatePlayButton();
 
@@ -1446,7 +1426,8 @@ async function syncRadio(){
     }
 
     if(
-        currentSongIndex !== position.index
+        currentSongIndex !==
+        position.index
     ){
 
         await loadSong(
@@ -1469,12 +1450,12 @@ async function syncRadio(){
         if(difference > 3){
 
             try{
+
                 radioAudio.currentTime =
                     position.position;
+
             }catch(e){}
-
         }
-
     }
 
     if(
@@ -1486,7 +1467,8 @@ async function syncRadio(){
 
             await radioAudio.play();
 
-            isPlaying = true;
+            isPlaying =
+                true;
 
             updatePlayButton();
 
@@ -1494,21 +1476,20 @@ async function syncRadio(){
                 "playing"
             );
 
-        }catch(error){
-
-            updatePlayButton();
-        }
+        }catch(error){}
     }
 }
 
 
 /* =====================================================
-   ONLINE / OFFLINE STATE
+   ONLINE / OFFLINE
 ===================================================== */
 
 function setOnlineState(){
 
-    liveBadge.classList.add("live");
+    liveBadge.classList.add(
+        "live"
+    );
 
     liveText.textContent =
         "LIVE";
@@ -1521,7 +1502,9 @@ function setOnlineState(){
 
 function setOfflineState(){
 
-    liveBadge.classList.remove("live");
+    liveBadge.classList.remove(
+        "live"
+    );
 
     liveText.textContent =
         "OFFLINE";
@@ -1590,7 +1573,8 @@ async function toggleRadio(){
 
         radioAudio.pause();
 
-        isPlaying = false;
+        isPlaying =
+            false;
 
         equalizer.classList.remove(
             "playing"
@@ -1601,7 +1585,8 @@ async function toggleRadio(){
         return;
     }
 
-    radioStarted = true;
+    radioStarted =
+        true;
 
     const position =
         await getRadioPosition();
@@ -1622,8 +1607,10 @@ async function toggleRadio(){
         }else{
 
             try{
+
                 radioAudio.currentTime =
                     position.position;
+
             }catch(e){}
         }
     }
@@ -1632,7 +1619,8 @@ async function toggleRadio(){
 
         await radioAudio.play();
 
-        isPlaying = true;
+        isPlaying =
+            true;
 
         updatePlayButton();
 
@@ -1645,7 +1633,8 @@ async function toggleRadio(){
 
     }catch(error){
 
-        isPlaying = false;
+        isPlaying =
+            false;
 
         updatePlayButton();
 
@@ -1671,14 +1660,15 @@ function changeVolume(value){
 
 
 /* =====================================================
-   RADIO AUDIO EVENTS
+   AUDIO EVENTS
 ===================================================== */
 
 radioAudio.addEventListener(
     "play",
     () => {
 
-        isPlaying = true;
+        isPlaying =
+            true;
 
         updatePlayButton();
 
@@ -1694,7 +1684,8 @@ radioAudio.addEventListener(
     "pause",
     () => {
 
-        isPlaying = false;
+        isPlaying =
+            false;
 
         updatePlayButton();
 
@@ -1738,7 +1729,6 @@ function updateListeningTime(){
         getInternetNow();
 
     if(!now){
-
         return;
     }
 
@@ -1746,14 +1736,18 @@ function updateListeningTime(){
         Math.max(
             0,
             Math.floor(
-                (now.getTime() -
-                listeningStartTime.getTime()) / 1000
+                (
+                    now.getTime() -
+                    listeningStartTime.getTime()
+                ) / 1000
             )
         );
 
     const h =
         String(
-            Math.floor(seconds / 3600)
+            Math.floor(
+                seconds / 3600
+            )
         ).padStart(2,"0");
 
     const m =
@@ -1774,7 +1768,7 @@ function updateListeningTime(){
 
 
 /* =====================================================
-   LOCAL LISTENERS
+   LISTENERS
 ===================================================== */
 
 function getListeners(){
@@ -1845,7 +1839,6 @@ function addListener(name){
             name:cleanName,
             time:timestamp
         });
-
     }
 
     saveListeners(
@@ -1900,6 +1893,7 @@ function renderListeners(){
                     <span class="listener-name">
                         ${escapeHtml(item.name)}
                     </span>
+
                     <span class="listener-time">
                         ${timeText}
                     </span>
@@ -1926,171 +1920,56 @@ function escapeHtml(text){
 
 
 /* =====================================================
-   JOIN RADIO
+   AUTO START RADIO
 ===================================================== */
 
-async function joinRadio(){
-
-    const name =
-        nameInput.value.trim();
-
-    const password =
-        passwordInput.value;
-
-    if(!name){
-
-        alert(
-            "Please enter your name."
-        );
-
-        nameInput.focus();
-
-        return;
-    }
-
-    if(password !== PASSWORD){
-
-        alert(
-            "Incorrect password."
-        );
-
-        passwordInput.focus();
-
-        return;
-    }
+async function startRadio(){
 
     if(!internetTimeReady){
 
-        const synced =
-            await syncInternetTime();
+        songTitle.textContent =
+            "Connecting...";
 
-        if(!synced){
+        songStatus.textContent =
+            "Synchronizing internet time...";
 
-            alert(
-                "Internet time could not be synchronized. Please check your internet connection."
-            );
-
-            return;
-        }
+        return;
     }
 
     if(!isListeningHours()){
 
-        alert(
-            "Listening Hours: 6:00 AM – 11:00 PM"
-        );
+        setOfflineState();
 
         return;
     }
 
-    listenerName =
-        name;
-
-    localStorage.setItem(
-        "jesiLiveName",
-        name
-    );
-
-    addListener(name);
+    setOnlineState();
 
     listeningStartTime =
         getInternetNow();
 
-    loginScreen.classList.add(
-        "hidden"
-    );
-
-    radioScreen.classList.remove(
-        "hidden"
-    );
-
     await loadPlaylist();
 
-    radioStarted = false;
-
-    setOnlineState();
-
-    await syncRadio();
-
-}
-
-
-/* =====================================================
-   EXISTING SESSION
-===================================================== */
-
-async function checkExistingSession(){
-
-    const savedName =
-        localStorage.getItem(
-            "jesiLiveName"
-        );
-
-    if(!savedName){
+    if(!playlist.length){
         return;
     }
 
-    if(!internetTimeReady){
+    radioStarted =
+        true;
+
+    const position =
+        await getRadioPosition();
+
+    if(!position){
         return;
     }
 
-    if(!isListeningHours()){
-        return;
-    }
-
-    listenerName =
-        savedName;
-
-    nameInput.value =
-        savedName;
-
-    listeningStartTime =
-        getInternetNow();
-
-    addListener(savedName);
-
-    loginScreen.classList.add(
-        "hidden"
+    await loadSong(
+        position.index,
+        position.position,
+        true
     );
-
-    radioScreen.classList.remove(
-        "hidden"
-    );
-
-    await loadPlaylist();
-
-    setOnlineState();
-
-    await syncRadio();
 }
-
-
-/* =====================================================
-   PASSWORD ENTER KEY
-===================================================== */
-
-passwordInput.addEventListener(
-    "keydown",
-    event => {
-
-        if(event.key === "Enter"){
-            joinRadio();
-        }
-
-    }
-);
-
-
-nameInput.addEventListener(
-    "keydown",
-    event => {
-
-        if(event.key === "Enter"){
-            passwordInput.focus();
-        }
-
-    }
-);
 
 
 /* =====================================================
@@ -2113,7 +1992,6 @@ async function updateApp(){
     ){
 
         setOfflineState();
-
     }
 
     updateListeningTime();
@@ -2129,14 +2007,7 @@ async function updateApp(){
         lastPositionSync =
             now;
 
-        if(
-            !radioScreen.classList.contains(
-                "hidden"
-            )
-        ){
-
-            await syncRadio();
-        }
+        await syncRadio();
     }
 }
 
@@ -2160,18 +2031,29 @@ async function updateApp(){
     date.textContent =
         "Connecting to internet time...";
 
-    await syncInternetTime();
+    const synced =
+        await syncInternetTime();
 
-    updateClock();
+    if(synced){
 
-    await checkExistingSession();
+        updateClock();
+
+        await startRadio();
+
+    }else{
+
+        songTitle.textContent =
+            "Waiting for Internet";
+
+        songStatus.textContent =
+            "Internet time synchronization required";
+    }
 
 })();
 
 
 /* =====================================================
    INTERNET TIME RE-SYNC
-   EVERY 5 MINUTES
 ===================================================== */
 
 setInterval(
@@ -2180,9 +2062,7 @@ setInterval(
         await syncInternetTime();
 
         if(
-            !radioScreen.classList.contains(
-                "hidden"
-            )
+            internetTimeReady
         ){
 
             await syncRadio();

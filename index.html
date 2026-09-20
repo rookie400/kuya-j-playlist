@@ -1,0 +1,1658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jesi Live Radio</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html,body{
+    width:100%;
+    min-height:100%;
+    font-family:Arial,Helvetica,sans-serif;
+    background:#070707;
+    color:#fff;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow-x:hidden;
+}
+
+.container{
+    width:min(100%,900px);
+    padding:25px;
+}
+
+/* =====================================================
+   LOGIN
+===================================================== */
+
+#loginPage{
+    width:100%;
+    max-width:430px;
+    margin:auto;
+    background:#111;
+    border:1px solid #292929;
+    border-radius:22px;
+    padding:35px 28px;
+    box-shadow:0 20px 70px rgba(0,0,0,.55);
+}
+
+.logo{
+    text-align:center;
+    font-size:32px;
+    font-weight:800;
+    letter-spacing:2px;
+    margin-bottom:8px;
+}
+
+.logo span{
+    color:#00ff88;
+}
+
+.subtitle{
+    text-align:center;
+    color:#999;
+    font-size:14px;
+    margin-bottom:30px;
+}
+
+.field{
+    margin-bottom:16px;
+}
+
+.field label{
+    display:block;
+    font-size:13px;
+    color:#aaa;
+    margin-bottom:7px;
+}
+
+.field input{
+    width:100%;
+    height:50px;
+    border:1px solid #333;
+    background:#080808;
+    color:#fff;
+    border-radius:11px;
+    padding:0 15px;
+    outline:none;
+    font-size:16px;
+}
+
+.field input:focus{
+    border-color:#00ff88;
+}
+
+.joinBtn{
+    width:100%;
+    height:52px;
+    border:0;
+    border-radius:11px;
+    background:#00ff88;
+    color:#00150b;
+    font-size:16px;
+    font-weight:800;
+    cursor:pointer;
+    margin-top:8px;
+}
+
+.joinBtn:hover{
+    filter:brightness(1.08);
+}
+
+.loginInfo{
+    text-align:center;
+    color:#777;
+    font-size:12px;
+    line-height:1.5;
+    margin-top:18px;
+}
+
+/* =====================================================
+   RADIO
+===================================================== */
+
+#radioPage{
+    display:none;
+    width:100%;
+}
+
+.radioCard{
+    background:#101010;
+    border:1px solid #292929;
+    border-radius:24px;
+    padding:28px;
+    box-shadow:0 20px 70px rgba(0,0,0,.5);
+}
+
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+    margin-bottom:25px;
+}
+
+.brand{
+    font-size:28px;
+    font-weight:800;
+    letter-spacing:1px;
+}
+
+.brand span{
+    color:#00ff88;
+}
+
+.liveBadge{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding:8px 13px;
+    border-radius:20px;
+    background:#191919;
+    font-size:12px;
+    font-weight:700;
+    white-space:nowrap;
+}
+
+.liveDot{
+    width:9px;
+    height:9px;
+    border-radius:50%;
+    background:#777;
+}
+
+.liveBadge.live .liveDot{
+    background:#00ff88;
+    box-shadow:0 0 12px #00ff88;
+    animation:pulse 1.3s infinite;
+}
+
+.liveBadge.live{
+    color:#00ff88;
+}
+
+.liveBadge.offline .liveDot{
+    background:#ff3b3b;
+}
+
+@keyframes pulse{
+    0%,100%{opacity:1}
+    50%{opacity:.35}
+}
+
+/* =====================================================
+   TIME BOX
+===================================================== */
+
+.timeGrid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+    margin-bottom:20px;
+}
+
+.infoBox{
+    background:#080808;
+    border:1px solid #242424;
+    border-radius:16px;
+    padding:18px;
+}
+
+.infoTitle{
+    color:#777;
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:1px;
+    margin-bottom:7px;
+}
+
+.infoValue{
+    font-size:22px;
+    font-weight:800;
+}
+
+.infoSmall{
+    color:#999;
+    font-size:12px;
+    margin-top:5px;
+}
+
+/* =====================================================
+   NOW PLAYING
+===================================================== */
+
+.nowPlaying{
+    background:linear-gradient(145deg,#151515,#0b0b0b);
+    border:1px solid #292929;
+    border-radius:18px;
+    padding:25px;
+    text-align:center;
+    margin-bottom:18px;
+}
+
+.onAir{
+    color:#00ff88;
+    font-size:11px;
+    font-weight:800;
+    letter-spacing:2px;
+    margin-bottom:12px;
+}
+
+.songTitle{
+    font-size:25px;
+    font-weight:800;
+    word-break:break-word;
+}
+
+.songNumber{
+    color:#777;
+    font-size:12px;
+    margin-top:8px;
+}
+
+/* =====================================================
+   AUDIO
+===================================================== */
+
+.audioArea{
+    position:relative;
+    margin-bottom:18px;
+}
+
+/*
+   The audio element is intentionally hidden.
+   There are no listener playback buttons.
+*/
+
+#audioPlayer{
+    width:100%;
+    display:none;
+}
+
+/* =====================================================
+   JOIN BOX
+===================================================== */
+
+.joinSection{
+    background:#080808;
+    border:1px solid #242424;
+    border-radius:16px;
+    overflow:hidden;
+}
+
+.joinHeader{
+    height:54px;
+    padding:0 16px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+}
+
+.joinMessage{
+    min-width:0;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    font-size:14px;
+    color:#ddd;
+}
+
+.joinMessage strong{
+    color:#00ff88;
+}
+
+.expandBtn{
+    border:1px solid #333;
+    background:#151515;
+    color:#ddd;
+    border-radius:8px;
+    padding:7px 11px;
+    cursor:pointer;
+    font-size:12px;
+    flex-shrink:0;
+}
+
+.expandBtn:hover{
+    border-color:#00ff88;
+    color:#00ff88;
+}
+
+.joinList{
+    display:none;
+    border-top:1px solid #222;
+    max-height:230px;
+    overflow-y:auto;
+}
+
+.joinList.open{
+    display:block;
+}
+
+.joinItem{
+    padding:12px 16px;
+    border-bottom:1px solid #1b1b1b;
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+    font-size:13px;
+}
+
+.joinItem:last-child{
+    border-bottom:0;
+}
+
+.joinName{
+    color:#fff;
+    font-weight:700;
+}
+
+.joinTime{
+    color:#666;
+    white-space:nowrap;
+}
+
+/* =====================================================
+   OFFLINE
+===================================================== */
+
+.offlineBox{
+    display:none;
+    background:#0d0d0d;
+    border:1px solid #292929;
+    border-radius:18px;
+    padding:35px 20px;
+    text-align:center;
+    margin-bottom:18px;
+}
+
+.offlineIcon{
+    font-size:35px;
+    margin-bottom:12px;
+}
+
+.offlineTitle{
+    font-size:22px;
+    font-weight:800;
+    margin-bottom:7px;
+}
+
+.offlineText{
+    color:#888;
+    font-size:13px;
+}
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.footer{
+    text-align:center;
+    color:#555;
+    font-size:11px;
+    margin-top:20px;
+}
+
+@media(max-width:650px){
+
+    body{
+        align-items:flex-start;
+    }
+
+    .container{
+        padding:12px;
+    }
+
+    .radioCard{
+        padding:18px;
+        border-radius:18px;
+    }
+
+    .header{
+        align-items:flex-start;
+        flex-direction:column;
+    }
+
+    .brand{
+        font-size:24px;
+    }
+
+    .timeGrid{
+        grid-template-columns:1fr;
+    }
+
+    .songTitle{
+        font-size:20px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- =================================================
+         LOGIN PAGE
+    ================================================== -->
+
+    <div id="loginPage">
+
+        <div class="logo">
+            JESI <span>LIVE RADIO</span>
+        </div>
+
+        <div class="subtitle">
+            Create your listener account to enter the stream.
+        </div>
+
+        <div class="field">
+            <label>Your Name</label>
+            <input
+                id="nameInput"
+                type="text"
+                maxlength="30"
+                autocomplete="name"
+                placeholder="Enter your name"
+            >
+        </div>
+
+        <div class="field">
+            <label>Password</label>
+            <input
+                id="passwordInput"
+                type="password"
+                maxlength="50"
+                placeholder="Create your password"
+            >
+        </div>
+
+        <button class="joinBtn" id="joinBtn">
+            JOIN THE STREAM
+        </button>
+
+        <div class="loginInfo">
+            Listening Hours<br>
+            <strong>6:00 AM – 10:00 PM</strong>
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         RADIO PAGE
+    ================================================== -->
+
+    <div id="radioPage">
+
+        <div class="radioCard">
+
+            <div class="header">
+
+                <div class="brand">
+                    JESI <span>LIVE RADIO</span>
+                </div>
+
+                <div id="liveBadge" class="liveBadge offline">
+                    <div class="liveDot"></div>
+                    <span id="liveText">STREAM OFFLINE</span>
+                </div>
+
+            </div>
+
+
+            <!-- TIME -->
+
+            <div class="timeGrid">
+
+                <div class="infoBox">
+
+                    <div class="infoTitle">
+                        CURRENT TIME
+                    </div>
+
+                    <div
+                        class="infoValue"
+                        id="currentTime"
+                    >
+                        --:--:--
+                    </div>
+
+                    <div
+                        class="infoSmall"
+                        id="currentDate"
+                    >
+                        --
+                    </div>
+
+                </div>
+
+
+                <div class="infoBox">
+
+                    <div class="infoTitle">
+                        LISTENING HOURS
+                    </div>
+
+                    <div class="infoValue">
+                        6:00 AM – 10:00 PM
+                    </div>
+
+                    <div class="infoSmall">
+                        Daily
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- NOW PLAYING -->
+
+            <div
+                class="nowPlaying"
+                id="nowPlayingBox"
+            >
+
+                <div class="onAir">
+                    ● ON AIR
+                </div>
+
+                <div
+                    class="songTitle"
+                    id="songTitle"
+                >
+                    Loading playlist...
+                </div>
+
+                <div
+                    class="songNumber"
+                    id="songNumber"
+                >
+                    --
+                </div>
+
+            </div>
+
+
+            <!-- OFFLINE -->
+
+            <div
+                class="offlineBox"
+                id="offlineBox"
+            >
+
+                <div class="offlineIcon">
+                    🔴
+                </div>
+
+                <div class="offlineTitle">
+                    STREAM IS OFFLINE
+                </div>
+
+                <div class="offlineText">
+                    Listening hours are from
+                    6:00 AM to 10:00 PM.
+                    <br>
+                    Please come back during listening hours.
+                </div>
+
+            </div>
+
+
+            <!-- AUDIO -->
+
+            <div class="audioArea">
+
+                <audio
+                    id="audioPlayer"
+                    preload="auto"
+                    playsinline
+                ></audio>
+
+            </div>
+
+
+            <!-- JOIN NOTIFICATION -->
+
+            <div class="joinSection">
+
+                <div class="joinHeader">
+
+                    <div
+                        class="joinMessage"
+                        id="joinMessage"
+                    >
+                        No listeners yet.
+                    </div>
+
+                    <button
+                        class="expandBtn"
+                        id="expandBtn"
+                    >
+                        Expand
+                    </button>
+
+                </div>
+
+                <div
+                    class="joinList"
+                    id="joinList"
+                ></div>
+
+            </div>
+
+
+            <div class="footer">
+                Jesi Live Radio • Repeat All
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   PLAYLIST
+=====================================================
+
+   Put your MP3 files inside:
+
+   mp3/
+
+   Example:
+
+   mp3/song1.mp3
+   mp3/song2.mp3
+   mp3/song3.mp3
+
+   IMPORTANT:
+   The order here is the order of the playlist.
+===================================================== */
+
+const PLAYLIST = [
+
+    "mp3/song1.mp3",
+    "mp3/song2.mp3",
+    "mp3/song3.mp3",
+    "mp3/song4.mp3",
+    "mp3/song5.mp3"
+
+];
+
+
+/* =====================================================
+   RADIO SETTINGS
+===================================================== */
+
+const START_HOUR = 6;
+const END_HOUR   = 22;
+
+
+/*
+   Manila time.
+
+   Browser users in the Philippines will normally
+   already have the correct local time.
+
+   We calculate using local browser time because
+   GitHub Pages has no server-side clock.
+*/
+
+
+/* =====================================================
+   ELEMENTS
+===================================================== */
+
+const loginPage =
+    document.getElementById("loginPage");
+
+const radioPage =
+    document.getElementById("radioPage");
+
+const nameInput =
+    document.getElementById("nameInput");
+
+const passwordInput =
+    document.getElementById("passwordInput");
+
+const joinBtn =
+    document.getElementById("joinBtn");
+
+const currentTime =
+    document.getElementById("currentTime");
+
+const currentDate =
+    document.getElementById("currentDate");
+
+const liveBadge =
+    document.getElementById("liveBadge");
+
+const liveText =
+    document.getElementById("liveText");
+
+const songTitle =
+    document.getElementById("songTitle");
+
+const songNumber =
+    document.getElementById("songNumber");
+
+const nowPlayingBox =
+    document.getElementById("nowPlayingBox");
+
+const offlineBox =
+    document.getElementById("offlineBox");
+
+const audioPlayer =
+    document.getElementById("audioPlayer");
+
+const joinMessage =
+    document.getElementById("joinMessage");
+
+const expandBtn =
+    document.getElementById("expandBtn");
+
+const joinList =
+    document.getElementById("joinList");
+
+
+/* =====================================================
+   LOCAL USER
+===================================================== */
+
+let currentUser =
+    localStorage.getItem("jesiRadioUser") || "";
+
+
+/* =====================================================
+   JOINED LISTENERS
+===================================================== */
+
+let listeners =
+    JSON.parse(
+        localStorage.getItem("jesiRadioListeners") || "[]"
+    );
+
+
+/* =====================================================
+   RADIO STATE
+===================================================== */
+
+let currentTrackIndex = -1;
+let currentTrackDuration = 0;
+let radioIsLive = false;
+let syncTimer = null;
+
+
+/* =====================================================
+   FORMAT TIME
+===================================================== */
+
+function formatTime(date){
+
+    return date.toLocaleTimeString(
+        "en-PH",
+        {
+            hour:"2-digit",
+            minute:"2-digit",
+            second:"2-digit",
+            hour12:true
+        }
+    );
+
+}
+
+
+function formatDate(date){
+
+    return date.toLocaleDateString(
+        "en-PH",
+        {
+            weekday:"long",
+            year:"numeric",
+            month:"long",
+            day:"numeric"
+        }
+    );
+
+}
+
+
+/* =====================================================
+   CHECK LISTENING HOURS
+===================================================== */
+
+function isListeningHours(){
+
+    const now = new Date();
+
+    const hour =
+        now.getHours();
+
+    const minute =
+        now.getMinutes();
+
+    const second =
+        now.getSeconds();
+
+    const totalSeconds =
+        hour * 3600 +
+        minute * 60 +
+        second;
+
+    const start =
+        START_HOUR * 3600;
+
+    const end =
+        END_HOUR * 3600;
+
+    return (
+        totalSeconds >= start &&
+        totalSeconds < end
+    );
+}
+
+
+/* =====================================================
+   UPDATE CLOCK
+===================================================== */
+
+function updateClock(){
+
+    const now = new Date();
+
+    currentTime.textContent =
+        formatTime(now);
+
+    currentDate.textContent =
+        formatDate(now);
+
+    updateLiveStatus();
+
+}
+
+
+/* =====================================================
+   LIVE STATUS
+===================================================== */
+
+function updateLiveStatus(){
+
+    const live =
+        isListeningHours();
+
+    radioIsLive = live;
+
+    if(live){
+
+        liveBadge.classList.remove("offline");
+        liveBadge.classList.add("live");
+
+        liveText.textContent =
+            "STREAM LIVE";
+
+        nowPlayingBox.style.display =
+            "block";
+
+        offlineBox.style.display =
+            "none";
+
+        if(
+            currentUser &&
+            audioPlayer.src
+        ){
+            syncRadio();
+        }
+
+    }else{
+
+        liveBadge.classList.remove("live");
+        liveBadge.classList.add("offline");
+
+        liveText.textContent =
+            "STREAM OFFLINE";
+
+        nowPlayingBox.style.display =
+            "none";
+
+        offlineBox.style.display =
+            "block";
+
+        audioPlayer.pause();
+
+    }
+
+}
+
+
+/* =====================================================
+   GET PLAYLIST TOTAL DURATION
+=====================================================
+
+   Browser loads each MP3 temporarily to determine
+   duration.
+
+===================================================== */
+
+async function getPlaylistDurations(){
+
+    const durations = [];
+
+    for(let i = 0; i < PLAYLIST.length; i++){
+
+        const duration =
+            await getAudioDuration(
+                PLAYLIST[i]
+            );
+
+        durations.push(duration);
+
+    }
+
+    return durations;
+}
+
+
+function getAudioDuration(src){
+
+    return new Promise(resolve => {
+
+        const audio =
+            document.createElement("audio");
+
+        audio.preload = "metadata";
+
+        audio.src = src;
+
+        audio.addEventListener(
+            "loadedmetadata",
+            () => {
+
+                const d =
+                    Number(audio.duration);
+
+                resolve(
+                    Number.isFinite(d)
+                    ? d
+                    : 0
+                );
+
+            }
+        );
+
+        audio.addEventListener(
+            "error",
+            () => {
+
+                resolve(0);
+
+            }
+        );
+
+    });
+
+}
+
+
+/* =====================================================
+   PLAYLIST CACHE
+===================================================== */
+
+let playlistDurations = [];
+let playlistTotalDuration = 0;
+
+
+/* =====================================================
+   LOAD PLAYLIST DURATIONS
+===================================================== */
+
+async function preparePlaylist(){
+
+    if(!PLAYLIST.length){
+
+        songTitle.textContent =
+            "No MP3 files configured.";
+
+        return;
+
+    }
+
+    songTitle.textContent =
+        "Preparing playlist...";
+
+    playlistDurations =
+        await getPlaylistDurations();
+
+    playlistTotalDuration =
+        playlistDurations.reduce(
+            (a,b) => a + b,
+            0
+        );
+
+    if(
+        !playlistTotalDuration ||
+        playlistTotalDuration <= 0
+    ){
+
+        songTitle.textContent =
+            "Unable to read MP3 duration.";
+
+        return;
+
+    }
+
+    syncRadio();
+
+}
+
+
+/* =====================================================
+   GET RADIO POSITION
+=====================================================
+
+   6:00 AM is the synchronization starting point.
+
+   The playlist repeats forever.
+
+   Example:
+
+   6:00 AM = beginning of Track 1
+
+   After the complete playlist duration,
+   it loops back to Track 1.
+
+===================================================== */
+
+function getRadioPosition(){
+
+    const now =
+        new Date();
+
+    const start =
+        new Date(now);
+
+    start.setHours(
+        START_HOUR,
+        0,
+        0,
+        0
+    );
+
+    const elapsed =
+        (now.getTime() -
+         start.getTime()) / 1000;
+
+    if(elapsed < 0){
+
+        return {
+            trackIndex:0,
+            offset:0
+        };
+
+    }
+
+    let position =
+        elapsed %
+        playlistTotalDuration;
+
+    for(
+        let i = 0;
+        i < playlistDurations.length;
+        i++
+    ){
+
+        const duration =
+            playlistDurations[i];
+
+        if(
+            position <
+            duration
+        ){
+
+            return {
+                trackIndex:i,
+                offset:position
+            };
+
+        }
+
+        position -= duration;
+
+    }
+
+    return {
+        trackIndex:0,
+        offset:0
+    };
+
+}
+
+
+/* =====================================================
+   GET FILE TITLE
+===================================================== */
+
+function getFileTitle(path){
+
+    let name =
+        path.split("/").pop();
+
+    name =
+        name.replace(
+            /\.(mp3|MP3)$/,
+            ""
+        );
+
+    name =
+        name.replace(
+            /[_-]+/g,
+            " "
+        );
+
+    return name;
+
+}
+
+
+/* =====================================================
+   SYNC RADIO
+===================================================== */
+
+function syncRadio(){
+
+    if(!radioIsLive){
+        return;
+    }
+
+    if(!playlistTotalDuration){
+        return;
+    }
+
+    const position =
+        getRadioPosition();
+
+    const index =
+        position.trackIndex;
+
+    const offset =
+        position.offset;
+
+    const src =
+        PLAYLIST[index];
+
+    const sameTrack =
+        currentTrackIndex === index;
+
+    if(!sameTrack){
+
+        currentTrackIndex =
+            index;
+
+        currentTrackDuration =
+            playlistDurations[index];
+
+        audioPlayer.src =
+            src;
+
+        audioPlayer.load();
+
+        songTitle.textContent =
+            getFileTitle(src);
+
+        songNumber.textContent =
+            "Track " +
+            (index + 1) +
+            " of " +
+            PLAYLIST.length;
+
+        audioPlayer.currentTime =
+            Math.min(
+                offset,
+                Math.max(
+                    0,
+                    (playlistDurations[index] || 1) - 0.2
+                )
+            );
+
+        tryPlay();
+
+    }else{
+
+        const difference =
+            Math.abs(
+                audioPlayer.currentTime -
+                offset
+            );
+
+        /*
+           Small difference = leave it alone.
+
+           Large difference = synchronize.
+        */
+
+        if(difference > 2){
+
+            try{
+
+                audioPlayer.currentTime =
+                    offset;
+
+            }catch(e){}
+
+        }
+
+        tryPlay();
+
+    }
+
+}
+
+
+/* =====================================================
+   PLAY
+===================================================== */
+
+function tryPlay(){
+
+    if(!radioIsLive){
+        return;
+    }
+
+    const promise =
+        audioPlayer.play();
+
+    if(
+        promise &&
+        typeof promise.catch === "function"
+    ){
+
+        promise.catch(() => {
+
+            /*
+               Browser autoplay policy may block
+               audio. The JOIN button itself is a
+               user interaction, so normally this
+               will work after joining.
+            */
+
+        });
+
+    }
+
+}
+
+
+/* =====================================================
+   AUDIO ENDED
+===================================================== */
+
+audioPlayer.addEventListener(
+    "ended",
+    () => {
+
+        /*
+           Repeat All.
+           Move to next track.
+        */
+
+        currentTrackIndex = -1;
+
+        syncRadio();
+
+    }
+);
+
+
+/* =====================================================
+   JOIN USER
+===================================================== */
+
+function joinRadio(){
+
+    const name =
+        nameInput.value.trim();
+
+    const password =
+        passwordInput.value;
+
+    if(!name){
+
+        alert(
+            "Please enter your name."
+        );
+
+        nameInput.focus();
+
+        return;
+
+    }
+
+    if(!password){
+
+        alert(
+            "Please create a password."
+        );
+
+        passwordInput.focus();
+
+        return;
+
+    }
+
+    if(password.length < 4){
+
+        alert(
+            "Password must be at least 4 characters."
+        );
+
+        passwordInput.focus();
+
+        return;
+
+    }
+
+    if(!isListeningHours()){
+
+        alert(
+            "The radio is currently offline.\n\n" +
+            "Listening Hours: 6:00 AM – 10:00 PM"
+        );
+
+        return;
+
+    }
+
+
+    /*
+       Local account for GitHub Pages.
+
+       Since GitHub Pages has no database,
+       this is a browser-local account/session.
+    */
+
+    localStorage.setItem(
+        "jesiRadioUser",
+        name
+    );
+
+    localStorage.setItem(
+        "jesiRadioPassword",
+        password
+    );
+
+    currentUser =
+        name;
+
+
+    /*
+       Add listener
+    */
+
+    const now =
+        new Date();
+
+    listeners =
+        listeners.filter(
+            item =>
+                item.name !== name
+        );
+
+    listeners.unshift({
+
+        name:name,
+
+        joinedAt:
+            now.toISOString()
+
+    });
+
+    /*
+       Keep the list manageable.
+    */
+
+    listeners =
+        listeners.slice(
+            0,
+            100
+        );
+
+    localStorage.setItem(
+        "jesiRadioListeners",
+        JSON.stringify(listeners)
+    );
+
+
+    loginPage.style.display =
+        "none";
+
+    radioPage.style.display =
+        "block";
+
+
+    renderListeners();
+
+    updateClock();
+
+    preparePlaylist();
+
+}
+
+
+/* =====================================================
+   RENDER LISTENERS
+===================================================== */
+
+function renderListeners(){
+
+    if(!listeners.length){
+
+        joinMessage.textContent =
+            "No listeners yet.";
+
+        joinList.innerHTML = "";
+
+        return;
+
+    }
+
+
+    const latest =
+        listeners[0];
+
+    joinMessage.innerHTML =
+        `<strong>${escapeHTML(latest.name)}</strong> Joined the stream`;
+
+
+    joinList.innerHTML =
+        listeners
+        .map(item => {
+
+            const date =
+                new Date(
+                    item.joinedAt
+                );
+
+            return `
+                <div class="joinItem">
+                    <div class="joinName">
+                        ${escapeHTML(item.name)}
+                    </div>
+
+                    <div class="joinTime">
+                        ${formatTime(date)}
+                    </div>
+                </div>
+            `;
+
+        })
+        .join("");
+
+}
+
+
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
+
+function escapeHTML(value){
+
+    return String(value)
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+/* =====================================================
+   EXPAND LIST
+===================================================== */
+
+expandBtn.addEventListener(
+    "click",
+    () => {
+
+        const open =
+            joinList.classList.toggle(
+                "open"
+            );
+
+        expandBtn.textContent =
+            open
+            ? "Collapse"
+            : "Expand";
+
+    }
+);
+
+
+/* =====================================================
+   JOIN BUTTON
+===================================================== */
+
+joinBtn.addEventListener(
+    "click",
+    joinRadio
+);
+
+
+/* =====================================================
+   ENTER KEY
+===================================================== */
+
+[nameInput,passwordInput]
+.forEach(input => {
+
+    input.addEventListener(
+        "keydown",
+        event => {
+
+            if(
+                event.key === "Enter"
+            ){
+
+                joinRadio();
+
+            }
+
+        }
+    );
+
+});
+
+
+/* =====================================================
+   CHECK EXISTING SESSION
+===================================================== */
+
+function checkExistingSession(){
+
+    if(
+        currentUser &&
+        isListeningHours()
+    ){
+
+        loginPage.style.display =
+            "none";
+
+        radioPage.style.display =
+            "block";
+
+        renderListeners();
+
+        preparePlaylist();
+
+    }
+
+}
+
+
+/* =====================================================
+   CLOCK
+===================================================== */
+
+setInterval(
+    updateClock,
+    1000
+);
+
+
+/* =====================================================
+   RADIO SYNCHRONIZATION
+=====================================================
+
+   Every 1 second we compare the browser audio
+   position against the time-based playlist position.
+
+===================================================== */
+
+syncTimer =
+    setInterval(
+        () => {
+
+            if(
+                currentUser &&
+                radioIsLive &&
+                playlistTotalDuration
+            ){
+
+                syncRadio();
+
+            }
+
+        },
+        1000
+    );
+
+
+/* =====================================================
+   INITIALIZATION
+===================================================== */
+
+updateClock();
+
+checkExistingSession();
+
+
+</script>
+
+</body>
+</html>
